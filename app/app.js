@@ -29,7 +29,7 @@ var fragments = 0;
 var oldFragments = 0;
 var lowestActionCount = 0;
 var clicks = 0;
-var autoSpeedValue = 600;
+var autoSpeedValue = 660;
 var autoSpeed = autoSpeedValue;
 var fragmentBonus = 5;
 var fragmentMultiplicator = 1;
@@ -65,7 +65,7 @@ var fragmentGridShop = new Array(
 	1500,	//29
 	2000,	//30
 	2500,
-	3700,	//32
+	3700/*,	//32
 	4900,
 	6100,	//34
 	8300,	
@@ -73,39 +73,39 @@ var fragmentGridShop = new Array(
 	13000,
 	18000,	//38
 	25000,
-	30000	//40
+	30000	//40*/
 );
 
 var speedShopIndex = 0;
 var fragmentSpeedShop = new Array(
-	5,
+	5,	//640
 	10,
-	15,
+	15,	//600
 	20,
-	25,
+	25,	//560
 	30,
-	35,
+	35,	//520
 	40,
-	45,
+	45,	//480
 	50,
-	55,
+	55,	//440
 	60,
-	75,
+	75,	//400
 	90,
-	100,
+	100,//360
 	125,
-	150,
+	150,//320
 	200,
-	250,
+	250,//280
 	400,
-	600,
+	600,//240
 	800,
-	1000,
+	1000,//200
 	1200,
-	1400,
+	1400,//160
 	1600,
-	1800,
-	2000
+	1800,//120
+	2000 //100
 );
 var fragmentSpeedBoost = 20;
 
@@ -320,6 +320,13 @@ function generateFields(){
 	//count rounds for turbo down
 	if(goldenTurboRounds > 1) {
 		goldenTurboRounds--;
+		
+		//after reset colorize again
+		if(countActions == 0){
+			//colorize grid
+			document.getElementById("board").style.border = goldenTurboGridColor;
+		}
+		
 	} else if (goldenTurboRounds == 1){
 		goldenTurboRounds--;
 		
@@ -1119,7 +1126,7 @@ function activateGoldenTurbo(){
 //keyboard usage
 function checkKey(e) {
     var event = window.event ? window.event : e;
-    console.log(event.keyCode)
+    //console.log(event.keyCode)
 	
 	//next round
 	if(event.keyCode == 13 || event.keyCode == 78){
