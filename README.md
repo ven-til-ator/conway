@@ -16,7 +16,6 @@ Supports:
 
 ## TODO's
 
-* Change Autotimer to Velocity [round(1/value * 10.000)]
 * Roundboost Rework (Scaling with updates from low to higher values)
 * Click Counter Statistics
 * Click Counter => Fragments every X clicks

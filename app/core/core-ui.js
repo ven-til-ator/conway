@@ -39,7 +39,7 @@ function displayScoreboardGUI(){
 			document.getElementById("fragments").innerHTML = fragments;
 		}
 		if(displaySpeedShop){
-			document.getElementById("autospeed").innerHTML = autoSpeed;
+			document.getElementById("autospeed").innerHTML = roundNumber((1/autoSpeed*10000),2);
 		}
 		if(displayGridShop){
 			document.getElementById("gridsize").innerHTML = engine.gridColumns+"x"+engine.gridRows;
