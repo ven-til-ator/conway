@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+	<head>
+		<title>
+			Conway's Game of Life
+		</title>
+		<meta charset="utf-8" />
+		<script type= "text/javascript" src="conway.js">
+		</script>
+		<link rel="stylesheet" href="conway.css" type="text/css" />
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	</head>
+	<body onkeyup="checkKey();">
+	
+		<div class="page-container">
+			<div id="board" class="board">
+			
+			</div>
+			
+			<div class="headline">
+				Conway's Game of Life
+			</div>
+			
+			<div class="formular">
+				<form method="post">
+					<input id="click" type="button" name="currentField" value="Next Step" class="button" onmousedown="generateFields();" autofocus />
+					<input id="autoplay" type="button" name="autoplay" value="Toggle Autoplay" class="buttonDeactivated" onmousedown="toggleAutoplay();"/>
+					<input id="reset" type="button" name="reset" value="Reset Game" class="button-reset" onmousedown="resetGame(false);"/>
+				</form>
+			</div>
+			
+			<div id="action-counter">
+				Please start
+			</div>
+			<div id="active-fields-counter">
+				Bring us to life!!!
+			</div>
+			
+			<div id="history" class="history">
+				
+			</div>
+			
+			<div id="highscores" class="highscores">
+				<div id="max-games-text" class="text">Games played:</div>
+				<div id="max-games" class="value">0</div>
+				<div id="max-resets-text" class="text">Games reset:</div>
+				<div id="max-resets" class="value">0</div>
+				<div class="clearfix"></div>
+				<div id="max-rounds-text" class="text">Max. Rounds:</div>
+				<div id="max-rounds" class="value high">0</div>
+				<div id="min-rounds-text" class="text">Min. Rounds:</div>
+				<div id="min-rounds" class="value low">0</div>
+				<div class="clearfix"></div>
+				<div id="max-ratio-text" class="text">Max. Ratio:</div>
+				<div id="max-ratio" class="value high">0</div>
+				<div id="min-ratio-text" class="text">Min. Ratio:</div>
+				<div id="min-ratio" class="value low">0</div>
+				<div class="clearfix"></div>
+				<div id="autospeed-text" class="text">Auto Timer:</div>
+				<div id="autospeed" class="value">0</div>
+				<div id="gridsize-text" class="text">Grid Size:</div>
+				<div id="gridsize" class="value">0</div>
+				<div class="clearfix"></div>
+				<div id="updates-text" class="text">Updates:</div>
+				<div id="updates" class="value">0</div>
+				<div class="clearfix"></div>
+				<div id="goldenturbos-text" class="text">Golden-Turbos:</div>
+				<div id="goldenturbos" class="value">0</div>
+				<div class="clearfix"></div>
+				<div id="fragments-text" class="text spacer">
+					<div class="subtext">Fragments&nbsp;<i class="fa fa-money" id="money-icon"></i>&nbsp;</div>
+				</div>
+				<div id="fragments" class="value spacer">0</div>
+				<div class="clearfix"></div>
+				<div id="fragmentchance-text" class="text">Chance:</div>
+				<div id="fragmentchance" class="value">0</div>
+				<div class="clearfix"></div>
+				<div id="fragmentperroundsboost-text" class="text">Boost every:</div>
+				<div id="fragmentperroundsboost" class="value">0</div>
+				<div id="fragmentperrounds-text" class="text">Per Round:</div>
+				<div id="fragmentperrounds" class="value">0</div>
+				<div class="clearfix"></div>
+				<div id="shops" class="shops"></div>
+				<div class="clearfix"></div>
+			</div>
+			
+			<div id="progressMessage" class="progressMessage">
+			
+			</div>
+			
+			<div id="infoMessage" class="infoMessage">
+			
+			</div>
+			
+			<script type ="text/javascript">
+				resetGame(true);
+			</script>
+			
+		</div>
+		
+	</body>
+</html>
