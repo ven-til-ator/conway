@@ -1,0 +1,306 @@
+#autoplay, #fragments-text, #fragments, #gridsize, #gridsize-text, #autospeed, #autospeed-text, #fragmentchance, #fragmentchance-text, #fragmentperrounds, #fragmentperrounds-text , #fragmentperroundsboost, #fragmentperroundsboost-text, #updates-text, #updates, #goldenturbos-text, #goldenturbos{
+	display: none;
+}
+
+div.clearfix{
+	clear: both;
+}
+
+#infoMessage{
+	display: none;
+	position: absolute;
+	top: 0px;
+	width: 50%;
+	padding: 10px;
+	border-top: 0px;
+	border-bottom: 2px solid indianred;
+	border-left: 1px solid indianred;
+	border-right: 1px solid indianred;
+	background-color: white;
+	font-weight: bold;
+	left: 25%;
+}
+
+#progressMessage{
+	display: none;
+	position: absolute;
+	top: 40px;
+	width: 50%;
+	padding: 10px;
+	border-bottom: 2px solid green;
+	border-top: 1px solid green;
+	border-left: 1px solid green;
+	border-right: 1px solid green;
+	background-color: white;
+	font-weight: bold;
+	left: 25%;
+}
+
+.page-container{
+	width:100%;
+	text-align:center;
+	font-family:sans-serif;
+	margin-top: 100px;
+}
+
+.page-container .headline{
+	font-size:28px;
+	padding:10px;
+}
+
+.page-container .history {
+	text-align: center;
+	width: 420px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+	display: none;
+}
+
+.page-container .history  .gamecounter{
+	float: left;
+	width: 40px;
+	text-align: left;
+	font-weight: bold;
+	height: 25px;
+}
+
+.page-container .history  .round{
+	float: left;
+	width: 100px;
+	text-align: left;
+	height: 25px;
+}
+
+.page-container .history  .fragmentBonus{
+	float: left;
+	text-align: right;
+	font-weight: bold;
+	color: green;
+	margin-left: 20px;
+}
+
+.page-container .history  .fields{
+	float: left;
+	width: 60px;
+	text-align: right;
+	height: 25px;	
+}
+
+.page-container .history  .fields .text{
+	height: 25px;
+	float: right;
+	margin-right: 5px;
+}
+
+.page-container .history  .fields .square{
+	display:inline-block;
+	box-sizing:border-box;
+	border:1px solid white;
+	width:18px;
+	height:18px;
+	background-color:black;
+	float: right;
+}
+
+.page-container .history  .ratio{
+	float: left;
+	width: 80px;
+	text-align: right;
+	height: 25px;
+}
+
+.page-container .history  .message{
+	float: left;
+	width: 100px;
+	text-align: left;
+	font-style: italic;
+	margin-left: 20px;
+	height: 25px;
+}
+
+.page-container .highscores {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+	display: none;
+}
+
+.page-container .highscores .text{
+	float: left;
+	display: block;
+	width: 130px;
+	text-align: left;
+}
+
+.page-container .highscores .text .subtext{
+	float: left;
+}
+
+.page-container .highscores .text .square{
+  border: 1px solid white;
+  box-sizing: border-box;
+  display: inline-block;
+  float: left;
+  height: 20px;
+  width: 20px;
+}
+
+.page-container .highscores .text .square .black{
+	background-color: black;
+}
+
+.page-container .highscores .value{
+	float: left;
+	display: block;
+	width: 30px;
+	margin: 0px 20px 0px 20px;
+	text-align: right;
+	font-weight: bold;
+}
+
+.page-container .highscores .spacer{
+	margin-top: 10px;
+}
+
+.page-container .highscores .low{
+	color: red;
+}
+
+.page-container .highscores .high{
+	color: green;
+}
+
+.page-container .highscores .shops{
+	margin-top: 20px;
+}
+
+.page-container .highscores .shops .paybutton{
+	float: left;
+	display: block;
+	padding: 10px;
+	margin: 3px;
+	text-align: center;
+	background-color: white;
+	border: 2px solid lightgray;
+	color: lightgrey;
+	cursor:pointer;
+	font-size:12px;
+}
+
+.page-container .highscores .shops .paybutton-active{
+	float: left;
+	display: block;
+	padding: 10px;
+	margin: 3px;
+	text-align: center;
+	background-color: white;
+	border: 2px solid gray;
+	color:black;
+	font-weight:bold;
+	cursor:pointer;
+	font-size:12px;
+}
+
+.page-container .highscores .shops .goldenButton{
+	float: left;
+	display: block;
+	padding: 10px;
+	margin: 3px;
+	text-align: center;
+	background-color: white;
+	border: 2px solid yellow;
+	color: black;
+	font-weight:bold;
+	cursor:pointer;
+	font-size:12px;
+}
+
+.page-container .board{
+	display:inline-block;
+	border:1px solid black;
+}
+
+.page-container .board .square{
+	display:inline-block;
+	box-sizing:border-box;
+	float:left;
+	border:1px solid black;
+	width:20px;
+	height:20px;
+}
+
+.page-container .board .square .black{
+	background-color:black;
+	display:inline-block;
+	width:100%;
+	height:100%;
+}
+
+.page-container .formular .button{
+	background-color:black;
+	color:white;
+	padding:20px;
+	border:0;
+	text-transform:uppercase;
+	font-size:11px;
+	text-align:center;
+}
+
+.page-container .formular .buttonActivated{
+	background-color: white;
+	color: black;
+	padding: 18px;
+	border: 2px solid black;
+	text-transform:uppercase;
+	font-size:11px;
+	text-align:center;
+}
+
+.page-container .formular .buttonDeactivated{
+	background-color:black;
+	color: white;
+	padding:20px;
+	border:0;
+	text-transform:uppercase;
+	font-size:11px;
+	text-align:center;
+}
+
+.page-container .formular .button-reset{
+	background-color:#dbdbdb;
+	color:black;
+	padding:20px;
+	border:0;
+	text-transform:uppercase;
+	font-size:11px;
+	text-align:center;
+	display: none;
+}
+
+.page-container .formular .button-reset-focused{
+	background-color:#dbdbdb;
+	color:black;
+	padding:18px;
+	border:2px solid indianred;
+	text-transform:uppercase;
+	font-size:11px;
+	text-align:center;
+	display: none;
+}
+
+.page-container #action-counter{
+	font-family:sans-serif;
+	font-size:15px;
+	color:black;
+	padding:10px;
+	display: none;
+}
+
+.page-container #active-fields-counter{
+	font-family:sans-serif;
+	font-size:15px;
+	color:black;
+	padding:10px;
+	display: none;
+}
