@@ -38,10 +38,10 @@ function displayScoreboardGUI(){
 		if(progress.shopsystem.gui.displayFragments){
 			document.getElementById("fragments").innerHTML = shopsystem.currentFragments;
 		}
-		if(displaySpeedShop){
-			document.getElementById("autospeed").innerHTML = roundNumber((1/autoSpeed*10000),2);
+		if(progress.shopsystem.gui.displayVelocityStatistic){
+			document.getElementById("autospeed").innerHTML = shopsystem.shops['velocity'].velocityValue();
 		}
-		if(displayGridShop){
+		if(progress.shopsystem.gui.displayGridStatistic){
 			document.getElementById("gridsize").innerHTML = engine.gridColumns+"x"+engine.gridRows;
 		}
 		if(displayFragmentMultiplicatorPerRoundsShop && fragmentPerRoundsShopIndex > 0){
@@ -60,7 +60,7 @@ function displayScoreboardGUI(){
 		
 		//display shops if fragments have changed
 		if(shopsystem.fragmentsLastRound != shopsystem.currentFragments){
-			displayShops();
+			shopsystem.displayShops();
 			shopsystem.fragmentsLastRound = shopsystem.currentFragments;
 		}
 	}
@@ -98,10 +98,10 @@ function checkKey(e) {
 	//SHOPS
 	if(event.keyCode == 49){
 		//speed
-		updateSpeed();
+		shopsystem.buy('velocity');
 	} else if(event.keyCode == 50){
 		//grid
-		updateGrid();
+		shopsystem.buy('grid');
 	} else if(event.keyCode == 51){
 		//fragment multiplicator rounds
 		updateFragmentMuliplicatorRounds()

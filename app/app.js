@@ -19,14 +19,14 @@ var displayGoldenTurboStatistic = false;
 //activate the turbo mode
 function activateGoldenTurbo(){
 	if(goldenTurbo == true){
-		goldenTurboRounds = goldenTurboBaseRound * (1+gridShopIndex);
+		goldenTurboRounds = goldenTurboBaseRound * (1+shopsystem.shops['grid'].values.index);
 		goldenTurbo = false;
 		
 		//colorize grid
 		document.getElementById("board").style.border = goldenTurboGridColor;
 		
 		//set turbo
-		autoSpeed = goldenTurboSpeed;
+		shopsystem.shops['velocity'].values.currentAutoSpeed = goldenTurboSpeed;
 		
 		//restart  timer
 		if(engine.autoplayActive){

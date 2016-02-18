@@ -13,7 +13,7 @@ var statistics = {
 		manuallyClicked: 0,
 		automaticallyClicked: 0
 	}
-}
+};
 
 var engine = {
 	firstRound: true,
@@ -23,9 +23,9 @@ var engine = {
 	manualReset: false,
 	gridHistory: new Array(),
 	autoplayActive: false,
-	autoplayTimer: null,
+	autoplayTimer: 0,
 	infoMessageTimer: 0
-}
+};
 
 var progress = {
 	gui: {
@@ -39,4 +39,4 @@ var progress = {
 	engine: {
 		autoReset: false
 	}
-}
+};

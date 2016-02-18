@@ -1,25 +1,3 @@
-//autoplay interval
-function autoplay(val) {
-	if (val == "run") {
-		engine.autoplayActive = true;
-		engine.autoplayTimer = window.setInterval(generateFields(true), autoSpeed);
-	} else {
-		engine.autoplayActive = false;
-		window.clearInterval(engine.autoplayTimer);
-	}
-}
-
-//toggle autoplay
-function toggleAutoplay() {
-	if(!engine.autoplayActive) {
-		autoplay("run");
-		document.getElementById("autoplay").className = "buttonActivated";
-	} else {
-		autoplay("stop");
-		document.getElementById("autoplay").className = "buttonDeactivated";
-	}
-} 
-
 //display board
 function generateFields(automatic){
 	if(engine.resetNeeded) {
@@ -60,7 +38,7 @@ function generateFields(automatic){
 		document.getElementById("board").style.border = defaultGridColor;
 		
 		//set speed
-		autoSpeed = autoSpeedValue;
+		shopsystem.shops['velocity'].values.currentAutoSpeed = shopsystem.shops['velocity'].values.autoSpeedValue;
 		
 		//activate speed
 		toggleAutoplay();
@@ -296,6 +274,46 @@ function generateFields(automatic){
 	return true;
 }
 
+
+function generateFieldsAuto(){
+	generateFields(true);
+}
+
+function nextGeneration(){
+	generateFields(false);
+}
+
+function newGame(){
+	resetGame(false);
+}
+
+//autoplay interval
+function autoplay(val) {
+	if(progress.gui.displayAutoPlay) {
+		if (val == "run") {
+			engine.autoplayActive = true;
+			engine.autoplayTimer = window.setInterval(generateFieldsAuto, shopsystem.shops['velocity'].values.currentAutoSpeed);
+		} else {
+			engine.autoplayActive = false;
+			window.clearInterval(engine.autoplayTimer);
+		}
+	}
+}
+
+//toggle autoplay
+function toggleAutoplay() {
+	if(progress.gui.displayAutoPlay) {
+		if(!engine.autoplayActive) {
+			autoplay("run");
+			document.getElementById("autoplay").className = "buttonActivated";
+		} else {
+			autoplay("stop");
+			document.getElementById("autoplay").className = "buttonDeactivated";
+		}
+	}
+} 
+
+
 //display grid
 function buildGrid(numberOfInputs){
 	var output = "";
@@ -368,8 +386,8 @@ function resetGame(automatic){
 			tempFragmentMultiplicator = fragmentMultiplicator + Math.floor(statistics.game.currentRounds/fragmentMuliplicatorRounds);
 		}
 		
-		message += "<div class=\"fragmentBonus\">"+ ((shopsystem.fragementBonusEmptyGrid * (gridShopIndex + 1)) * tempFragmentMultiplicator) +" <i class=\"fa fa-money\"></i></div>";
-		shopsystem.currentFragments += (shopsystem.fragementBonusEmptyGrid * (gridShopIndex + 1)) * tempFragmentMultiplicator;
+		message += "<div class=\"fragmentBonus\">"+ ((shopsystem.fragementBonusEmptyGrid * (shopsystem.shops['grid'].values.index + 1)) * tempFragmentMultiplicator) +" <i class=\"fa fa-money\"></i></div>";
+		shopsystem.currentFragments += (shopsystem.fragementBonusEmptyGrid * (shopsystem.shops['grid'].values.index + 1)) * tempFragmentMultiplicator;
 	}
 	
 	if(automatic == false){
@@ -511,13 +529,13 @@ function checkProgress(){
 	}
 	
 	//display speedShop
-	if(shopsystem.currentFragments >= fragmentSpeedShop[0] && !displaySpeedShop){
-		displaySpeedShop = true;
+	if(shopsystem.currentFragments >= shopsystem.shops['velocity'].pricing[0] && !shopsystem.shops['velocity'].visible){
+		shopsystem.shops['velocity'].visible = true;
 	}
 	
 	//display gridShop
-	if(shopsystem.currentFragments >= fragmentGridShop[0] && !displayGridShop){
-		displayGridShop = true;
+	if(shopsystem.currentFragments >= shopsystem.shops['grid'].pricing[0] && !shopsystem.shops['grid'].visible){
+		shopsystem.shops['grid'].visible = true;
 	}
 	
 	//display fragmentChanceShop
