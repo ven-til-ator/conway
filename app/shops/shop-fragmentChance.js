@@ -21,7 +21,7 @@ shopsystem.shops['fragmentchance'] = {
 		
 			//display html
 			output += "<div>";
-				output += "<div id=\"payFragmentChanceButton\" class=\""+ buttonClass +"\" onClick=\"buy('fragmentchance');\">(4) Fragment Chance "+ (shopsystem.shops['fragmentchance'].values.index+1) +" - "+ shopsystem.shops['fragmentchance'].pricing[shopsystem.shops['fragmentchance'].values.index] +" <i class=\"fa fa-money\"></i>";
+				output += "<div id=\"payFragmentChanceButton\" class=\""+ buttonClass +"\" onClick=\"shopsystem.buy('fragmentchance');\">(4) Fragment Chance "+ (shopsystem.shops['fragmentchance'].values.index+1) +" - "+ shopsystem.shops['fragmentchance'].pricing[shopsystem.shops['fragmentchance'].values.index] +" <i class=\"fa fa-money\"></i>";
 				output += "</div>";
 			output += "</div>";
 			output += "<div class=\"clearfix\"> </div>";

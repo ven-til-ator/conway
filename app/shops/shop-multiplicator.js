@@ -21,7 +21,7 @@ shopsystem.shops['multiplicator'] = {
 		
 			//display html
 			output += "<div>";
-				output += "<div id=\"payFragmentMultiplicatorButton\" class=\""+ buttonClass +"\" onClick=\"buy('multiplicator');\">(5) Fragment Multiplicator "+ (shopsystem.shops['multiplicator'].values.index+1) +" - "+ shopsystem.shops['multiplicator'].pricing[shopsystem.shops['multiplicator'].values.index] +" <i class=\"fa fa-money\"></i>";
+				output += "<div id=\"payFragmentMultiplicatorButton\" class=\""+ buttonClass +"\" onClick=\"shopsystem.buy('multiplicator');\">(5) Fragment Multiplicator "+ (shopsystem.shops['multiplicator'].values.index+1) +" - "+ shopsystem.shops['multiplicator'].pricing[shopsystem.shops['multiplicator'].values.index] +" <i class=\"fa fa-money\"></i>";
 				output += "</div>";
 			output += "</div>";
 			output += "<div class=\"clearfix\"> </div>";

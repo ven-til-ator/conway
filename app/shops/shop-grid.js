@@ -19,7 +19,7 @@ shopsystem.shops['grid'] = {
 		
 			//display html
 			output += "<div>";
-				output += "<div id=\"payGridButton\" class=\""+ buttonClass +"\" onClick=\"buy('grid');\">(2) Extend Grid "+ (shopsystem.shops['grid'].values.index+1) +" - "+ shopsystem.shops['grid'].pricing[shopsystem.shops['grid'].values.index] +" <i class=\"fa fa-money\"></i>";
+				output += "<div id=\"payGridButton\" class=\""+ buttonClass +"\" onClick=\"shopsystem.buy('grid');\">(2) Extend Grid "+ (shopsystem.shops['grid'].values.index+1) +" - "+ shopsystem.shops['grid'].pricing[shopsystem.shops['grid'].values.index] +" <i class=\"fa fa-money\"></i>";
 				output += "</div>";
 			output += "</div>";
 			output += "<div class=\"clearfix\"> </div>";
