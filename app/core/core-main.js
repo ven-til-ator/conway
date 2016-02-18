@@ -22,17 +22,17 @@ function generateFields(automatic){
 	}
 	
 	//count rounds for turbo down
-	if(goldenTurboRounds > 1) {
-		goldenTurboRounds--;
+	if(goldenTurboGenerations > 1) {
+		goldenTurboGenerations--;
 		
 		//after reset colorize again
-		if(statistics.game.currentRounds == 0){
+		if(statistics.game.currentGenerations == 0){
 			//colorize grid
 			document.getElementById("board").style.border = goldenTurboGridColor;
 		}
 		
-	} else if (goldenTurboRounds == 1){
-		goldenTurboRounds--;
+	} else if (goldenTurboGenerations == 1){
+		goldenTurboGenerations--;
 		
 		//colorize grid
 		document.getElementById("board").style.border = defaultGridColor;
@@ -56,7 +56,7 @@ function generateFields(automatic){
 		
 		//add to array
 		
-		if(statistics.game.currentRounds != 0){
+		if(statistics.game.currentGenerations != 0){
 			currentValues.push(fieldInput.value);
 		}else{
 			//random first action
@@ -166,19 +166,19 @@ function generateFields(automatic){
 				newValue = 1;
 				var style = "";
 				
-				if(progress.shopsystem.gui.displayFragments && (Math.random()*fragmentChance) < 2){
+				if(progress.shopsystem.gui.displayFragments && (Math.random()*shopsystem.shops['fragmentchance'].values.chance) < 2){
 					fragmentColor = 'rgb(' + (Math.floor(Math.random() * 255)) + ','
 									 + (Math.floor(Math.random() * 255)) + ','
 									 + (Math.floor(Math.random() * 255)) + ')';
 									 
 					style = " style=\"background-color: "+ fragmentColor +";\" ";
 					
-					var tempFragmentMultiplicator = fragmentMultiplicator;
-					if(displayFragmentMultiplicatorPerRoundsShop && fragmentPerRoundsShopIndex > 0){
-						tempFragmentMultiplicator = fragmentMultiplicator + Math.floor(statistics.game.currentRounds/fragmentMuliplicatorRounds);
+					var tempFragmentMultiplicator = shopsystem.shops['multiplicator'].values.fragmentMultiplicator;
+					if(progress.shopsystem.gui.displayFragmentMultiplicatorStatistic && shopsystem.shops['generationbonus'].values.index > 0){
+						tempFragmentMultiplicator = shopsystem.shops['multiplicator'].values.fragmentMultiplicator + Math.floor(statistics.game.currentGenerations/shopsystem.shops['generationbonus'].values.bonusEveryGeneration);
 						
 						//multiplicator is active
-						if(statistics.game.currentRounds >= fragmentMuliplicatorRounds){
+						if(statistics.game.currentGenerations >= shopsystem.shops['generationbonus'].values.bonusEveryGeneration){
 							//change color of grid
 							var boardSquareList = document.querySelectorAll(".square");
  
@@ -208,7 +208,7 @@ function generateFields(automatic){
 			}	
 			
 			//first action -> return random to check
-			if(statistics.game.currentRounds == 0){
+			if(statistics.game.currentGenerations == 0){
 				if(currentValues[fieldNumber] == 1){
 					newValue = 1;
 					additionalDiv = "<div class=\"black\"></div>";
@@ -234,13 +234,13 @@ function generateFields(automatic){
 	}
 	engine.gridHistory.push(currentValues.toString());
 	
-	statistics.game.currentRounds++;
+	statistics.game.currentGenerations++;
 	if(automatic == true){
 		statistics.game.automaticallyClicked++;
 	} else {
 		statistics.game.manuallyClicked++;
 	}
-	document.getElementById("action-counter").innerHTML = "Round: " + statistics.game.currentRounds;
+	document.getElementById("action-counter").innerHTML = "Generation: " + statistics.game.currentGenerations;
 	statistics.game.currentRatio = roundNumber(statistics.game.currentActiveFields / (engine.gridRows * engine.gridColumns) * 100, 2);
 	document.getElementById("active-fields-counter").innerHTML = "Fields alive: " + statistics.game.currentActiveFields + " / " + engine.gridRows * engine.gridColumns + " | ratio: " + getRatioHtml(statistics.game.currentRatio, "none");
 	
@@ -339,15 +339,15 @@ function resetGame(automatic){
 	var ratioText = "";
 	ratioText = statistics.game.currentRatio + "%";
 	
-	var countActionsText = statistics.game.currentRounds;
+	var countActionsText = statistics.game.currentGenerations;
 	
 	//scores only with automatic reset (no cheating)
 	if(automatic){
 		//first round => set all statistics
-		if(engine.firstRound == true){
-			engine.firstRound = false;
+		if(engine.firstGeneration == true){
+			engine.firstGeneration = false;
 			statistics.game.gamesResetAutomatically++;
-		} else if(statistics.game.currentRounds > 1){
+		} else if(statistics.game.currentGenerations > 1){
 			if (statistics.game.lowestRatio == 0 && statistics.game.highestRatio == 0) {
 				statistics.game.lowestRatio = statistics.game.currentRatio;
 				statistics.game.highestRatio = statistics.game.currentRatio;
@@ -363,27 +363,27 @@ function resetGame(automatic){
 				ratioText = getRatioHtml(statistics.game.currentRatio, "high");
 			}
 			
-			if (statistics.game.highestRound == 0 && statistics.game.lowestRound == 0) {
-				statistics.game.highestRound = statistics.game.currentRounds;
-				statistics.game.lowestRound = statistics.game.currentRounds;
-			} else if (statistics.game.currentRounds > statistics.game.highestRound) {
-				statistics.game.highestRound = statistics.game.currentRounds;
-				countActionsText = "<span style=\"color: \#90EE90; font-weight:bold;\">"+ statistics.game.currentRounds +"</span>"
-			} else if(statistics.game.currentRounds < statistics.game.lowestRound){
-				statistics.game.lowestRound = statistics.game.currentRounds;
-				countActionsText = "<span style=\"color: indianred; font-weight:bold;\">"+ statistics.game.currentRounds +"</span>"
+			if (statistics.game.highestGeneration == 0 && statistics.game.lowestGeneration == 0) {
+				statistics.game.highestGeneration = statistics.game.currentGenerations;
+				statistics.game.lowestGeneration = statistics.game.currentGenerations;
+			} else if (statistics.game.currentGenerations > statistics.game.highestGeneration) {
+				statistics.game.highestGeneration = statistics.game.currentGenerations;
+				countActionsText = "<span style=\"color: \#90EE90; font-weight:bold;\">"+ statistics.game.currentGenerations +"</span>"
+			} else if(statistics.game.currentGenerations < statistics.game.lowestGeneration){
+				statistics.game.lowestGeneration = statistics.game.currentGenerations;
+				countActionsText = "<span style=\"color: indianred; font-weight:bold;\">"+ statistics.game.currentGenerations +"</span>"
 			}
 		}
 	}
 		
-	var message = "<div class=\"round\">Round "+ countActionsText +"</div><div class=\"fields\"><div class=\"square\"></div><div class=\"text\">"+ statistics.game.currentActiveFields +"</div></div><div class=\"ratio\">"+ ratioText +"</div>";
+	var message = "<div class=\"round\">Generation "+ countActionsText +"</div><div class=\"fields\"><div class=\"square\"></div><div class=\"text\">"+ statistics.game.currentActiveFields +"</div></div><div class=\"ratio\">"+ ratioText +"</div>";
 	
 	//bonus fragments
 	if(progress.shopsystem.gui.displayFragments && statistics.game.currentRatio == 0){
 		//calculate fragment multiplicator aswell
-		var tempFragmentMultiplicator = fragmentMultiplicator;
-		if(displayFragmentMultiplicatorPerRoundsShop && fragmentPerRoundsShopIndex > 0){
-			tempFragmentMultiplicator = fragmentMultiplicator + Math.floor(statistics.game.currentRounds/fragmentMuliplicatorRounds);
+		var tempFragmentMultiplicator = shopsystem.shops['multiplicator'].values.fragmentMultiplicator;
+		if(progress.shopsystem.gui.displayFragmentMultiplicatorStatistic && shopsystem.shops['generationbonus'].values.index > 0){
+			tempFragmentMultiplicator = shopsystem.shops['multiplicator'].values.fragmentMultiplicator + Math.floor(statistics.game.currentGenerations/shopsystem.shops['generationbonus'].values.bonusEveryGeneration);
 		}
 		
 		message += "<div class=\"fragmentBonus\">"+ ((shopsystem.fragementBonusEmptyGrid * (shopsystem.shops['grid'].values.index + 1)) * tempFragmentMultiplicator) +" <i class=\"fa fa-money\"></i></div>";
@@ -412,7 +412,7 @@ function resetGame(automatic){
 	//display grid
 	document.getElementById('board').setAttribute("style","width: "+ engine.gridColumns*20 +"px; height: "+ engine.gridRows*20 +"px");
 	document.getElementById('board').innerHTML = buildGrid(engine.gridRows * engine.gridColumns);
-	statistics.game.currentRounds = 0;
+	statistics.game.currentGenerations = 0;
 	
 	//change reset button
 	document.getElementById("reset").className = "button-reset";
@@ -427,11 +427,11 @@ function resetGame(automatic){
 
 //reset game statistics
 function resetStatistics(){
-	//engine.firstRound = true;
+	//engine.firstGeneration = true;
 	statistics.game.lowestRatio = 0;
 	statistics.game.highestRatio = 0;
-	statistics.game.highestRound = 0;
-	statistics.game.lowestRound = 0;
+	statistics.game.highestGeneration = 0;
+	statistics.game.lowestGeneration = 0;
 	
 	//reset history
 	document.getElementById('history').innerHTML = "";
@@ -480,10 +480,10 @@ function checkProgress(){
 	}
 	
 	//display rounds after 10 click
-	if(statistics.game.manuallyClicked >= 10 && !progress.gui.displayRoundsInfo){
-		progress.gui.displayRoundsInfo = true;
-		//console.log("Rounds Unlocked!");
-		displayProgressMessage("Rounds Unlocked!");
+	if(statistics.game.manuallyClicked >= 10 && !progress.gui.displayGenerationsInfo){
+		progress.gui.displayGenerationsInfo = true;
+		//console.log("Generations Unlocked!");
+		displayProgressMessage("Generations Unlocked!");
 	}
 	
 	//display game info after 25 click
@@ -528,30 +528,8 @@ function checkProgress(){
 		displayProgressMessage("Fragments Unlocked!");
 	}
 	
-	//display speedShop
-	if(shopsystem.currentFragments >= shopsystem.shops['velocity'].pricing[0] && !shopsystem.shops['velocity'].visible){
-		shopsystem.shops['velocity'].visible = true;
-	}
-	
-	//display gridShop
-	if(shopsystem.currentFragments >= shopsystem.shops['grid'].pricing[0] && !shopsystem.shops['grid'].visible){
-		shopsystem.shops['grid'].visible = true;
-	}
-	
-	//display fragmentChanceShop
-	if(shopsystem.currentFragments >= fragmentChanceShop[0] && !displayFragmentChanceShop){
-		displayFragmentChanceShop = true;
-	}
-	
-	//display fragmentPerRoundsShop
-	if(shopsystem.currentFragments >= fragmentPerRoundsShop[0] && !displayFragmentMultiplicatorPerRoundsShop){
-		displayFragmentMultiplicatorPerRoundsShop = true;
-	}
-	
-	//display fragment multiplicator
-	if(shopsystem.currentFragments >= fragmentMultiplicatorShop[0] && !displayFragmentMultiplicatorShop){
-		displayFragmentMultiplicatorShop = true;
-	}
+	//check shop progress
+	shopsystem.checkProgress();
 	
 	//updates counter
 	if(statistics.shopsystem.updatesBought > 0 && !progress.shopsystem.gui.displayUpdatesStatistic){
@@ -564,7 +542,7 @@ function checkProgress(){
 		document.getElementById("reset").style.display = 'inline-block';
 	}
 	
-	if(progress.gui.displayRoundsInfo){
+	if(progress.gui.displayGenerationsInfo){
 		document.getElementById("action-counter").style.display = 'block';
 	}
 	

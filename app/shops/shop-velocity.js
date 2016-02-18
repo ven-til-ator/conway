@@ -21,7 +21,7 @@ shopsystem.shops['velocity'] = {
 		
 			//display html
 			output += "<div>";
-				output += "<div id=\"paySpeedButton\" class=\""+ buttonClass +"\" onClick=\"shopsystem.buy('velocity');\">(1) Speed Boost "+ (shopsystem.shops['velocity'].values.index+1) +" - "+ shopsystem.shops['velocity'].pricing[shopsystem.shops['velocity'].values.index] +" <i class=\"fa fa-money\"></i>";
+				output += "<div id=\"paySpeedButton\" class=\""+ buttonClass +"\" onClick=\"shopsystem.buy('velocity');\">(1) Velocity Boost "+ (shopsystem.shops['velocity'].values.index+1) +" - "+ shopsystem.shops['velocity'].pricing[shopsystem.shops['velocity'].values.index] +" <i class=\"fa fa-money\"></i>";
 				output += "</div>";
 			output += "</div>";
 			output += "<div class=\"clearfix\"> </div>";

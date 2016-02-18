@@ -3,10 +3,10 @@ var statistics = {
 		gamesOverall: 0,
 		gamesResetManually: 0,
 		gamesResetAutomatically: 0,
-		currentRounds: 0,
+		currentGenerations: 0,
 		currentActiveFields: 0,
-		highestRound: 0,
-		lowestRound: 0,
+		highestGeneration: 0,
+		lowestGeneration: 0,
 		currentRatio: 0,
 		lowestRatio: 0,
 		highestRatio: 0,
@@ -16,7 +16,7 @@ var statistics = {
 };
 
 var engine = {
-	firstRound: true,
+	firstGeneration: true,
 	gridRows: 12,
 	gridColumns: 12,
 	resetNeeded: false,
@@ -32,7 +32,7 @@ var progress = {
 		displayReset: false,
 		displayAutoPlay: false,
 		displayStatistics: false,
-		displayRoundsInfo: false,
+		displayGenerationsInfo: false,
 		displayCurrentGameInfo: false,
 		displayHistory: false
 	},

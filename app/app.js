@@ -7,9 +7,9 @@ var fragmentDefaultColor = "black";
 var goldenTurbosUsed = 0;
 var goldenTurbo = false;
 var goldenTurboChance = 3333;
-var goldenTurboRounds = 0;
+var goldenTurboGenerations = 0;
 var goldenTurboSpeed = 25;
-var goldenTurboBaseRound = 7;
+var goldenTurboBaseGeneration = 7;
 var goldenTurboGridColor = "2px solid yellow";
 var defaultGridColor = "1px solid black";
 
@@ -19,7 +19,7 @@ var displayGoldenTurboStatistic = false;
 //activate the turbo mode
 function activateGoldenTurbo(){
 	if(goldenTurbo == true){
-		goldenTurboRounds = goldenTurboBaseRound * (1+shopsystem.shops['grid'].values.index);
+		goldenTurboGenerations = goldenTurboBaseGeneration * (1+shopsystem.shops['grid'].values.index);
 		goldenTurbo = false;
 		
 		//colorize grid
@@ -41,6 +41,6 @@ function activateGoldenTurbo(){
 		displayGoldenTurboStatistic = true;
 		
 		//display Scoreboard
-		displayShops();
+		shopsystem.displayShops();
 	}
 }

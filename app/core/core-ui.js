@@ -31,10 +31,10 @@ function displayScoreboardGUI(){
 		document.getElementById("max-resets").innerHTML = statistics.game.gamesResetManually;
 		document.getElementById("min-ratio").innerHTML = statistics.game.lowestRatio;
 		document.getElementById("max-ratio").innerHTML = statistics.game.highestRatio;
-		document.getElementById("min-rounds").innerHTML = statistics.game.lowestRound;
-		document.getElementById("max-rounds").innerHTML = statistics.game.highestRound;
-		document.getElementById("min-rounds").innerHTML = statistics.game.lowestRound;
-		document.getElementById("max-rounds").innerHTML = statistics.game.highestRound;
+		document.getElementById("min-rounds").innerHTML = statistics.game.lowestGeneration;
+		document.getElementById("max-rounds").innerHTML = statistics.game.highestGeneration;
+		document.getElementById("min-rounds").innerHTML = statistics.game.lowestGeneration;
+		document.getElementById("max-rounds").innerHTML = statistics.game.highestGeneration;
 		if(progress.shopsystem.gui.displayFragments){
 			document.getElementById("fragments").innerHTML = shopsystem.currentFragments;
 		}
@@ -44,12 +44,12 @@ function displayScoreboardGUI(){
 		if(progress.shopsystem.gui.displayGridStatistic){
 			document.getElementById("gridsize").innerHTML = engine.gridColumns+"x"+engine.gridRows;
 		}
-		if(displayFragmentMultiplicatorPerRoundsShop && fragmentPerRoundsShopIndex > 0){
-			document.getElementById("fragmentperroundsboost").innerHTML = fragmentMuliplicatorRounds;
-			document.getElementById("fragmentperrounds").innerHTML = fragmentMultiplicator + Math.floor(statistics.game.currentRounds/fragmentMuliplicatorRounds);
+		if(progress.shopsystem.gui.displayFragmentMultiplicatorStatistic && shopsystem.shops['generationbonus'].values.index > 0){
+			document.getElementById("fragmentperroundsboost").innerHTML = shopsystem.shops['generationbonus'].values.bonusEveryGeneration;
+			document.getElementById("fragmentperrounds").innerHTML = shopsystem.shops['multiplicator'].values.fragmentMultiplicator + Math.floor(statistics.game.currentGenerations/shopsystem.shops['generationbonus'].values.bonusEveryGeneration);
 		}
-		if(displayFragmentChanceShop){
-			document.getElementById("fragmentchance").innerHTML = "1/"+ fragmentChance;
+		if(progress.shopsystem.gui.displayFragmentChanceStatistic && shopsystem.shops['fragmentchance'].values.index > 0){
+			document.getElementById("fragmentchance").innerHTML = "1/"+ shopsystem.shops['fragmentchance'].values.chance;
 		}
 		if(progress.shopsystem.gui.displayUpdatesStatistic){
 			document.getElementById("updates").innerHTML = statistics.shopsystem.updatesBought;
@@ -59,9 +59,9 @@ function displayScoreboardGUI(){
 		}
 		
 		//display shops if fragments have changed
-		if(shopsystem.fragmentsLastRound != shopsystem.currentFragments){
+		if(shopsystem.fragmentsLastGeneration != shopsystem.currentFragments){
 			shopsystem.displayShops();
-			shopsystem.fragmentsLastRound = shopsystem.currentFragments;
+			shopsystem.fragmentsLastGeneration = shopsystem.currentFragments;
 		}
 	}
 }
@@ -104,13 +104,13 @@ function checkKey(e) {
 		shopsystem.buy('grid');
 	} else if(event.keyCode == 51){
 		//fragment multiplicator rounds
-		updateFragmentMuliplicatorRounds()
+		shopsystem.buy('generationbonus');
 	} else if(event.keyCode == 52){
 		//fragment chance
-		updateFragmentChance();
+		shopsystem.buy('fragmentchance');
 	} else if(event.keyCode == 53){
 		//fragment multiplicator
-		updateFragmentMultiplicator();
+		shopsystem.buy('multiplicator');
 	} else if(event.keyCode == 54){
 		
 	} else if(event.keyCode == 55){
