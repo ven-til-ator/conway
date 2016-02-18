@@ -37,9 +37,9 @@ function updateGrid(){
 	//gridshop is activated
 	if(displayGridShop){
 		//enough money
-		if(fragments >= fragmentGridShop[gridShopIndex]){
+		if(shopsystem.currentFragments >= fragmentGridShop[gridShopIndex]){
 			//pay
-			fragments = fragments - fragmentGridShop[gridShopIndex];
+			shopsystem.currentFragments = shopsystem.currentFragments - fragmentGridShop[gridShopIndex];
 			gridShopIndex++;
 			
 			//update grid
@@ -54,7 +54,7 @@ function updateGrid(){
 			document.getElementById("gridsize-text").style.display = 'block';
 			document.getElementById("gridsize").style.display = 'block';
 			
-			updatesBought++;
+			statistics.shopsystem.updatesBought++;
 		}
 	}
 	

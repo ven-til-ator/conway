@@ -21,16 +21,16 @@ function updateFragmentMultiplicator(){
 	//shop is activated
 	if(displayFragmentMultiplicatorShop){
 		//enough money
-		if(fragments >= fragmentMultiplicatorShop[fragmentMultiplicatorShopIndex]){
+		if(shopsystem.currentFragments >= fragmentMultiplicatorShop[fragmentMultiplicatorShopIndex]){
 			//pay
-			fragments = fragments - fragmentMultiplicatorShop[fragmentMultiplicatorShopIndex];
+			shopsystem.currentFragments = shopsystem.currentFragments - fragmentMultiplicatorShop[fragmentMultiplicatorShopIndex];
 			fragmentMultiplicatorShopIndex++;
 			
 			fragmentMultiplicator += fragmentMultiplicatorBoost;
 			
 			displayProgressMessage("Fragment Multiplicator "+ fragmentMultiplicatorShopIndex +" Unlocked!");
 			
-			updatesBought++;
+			statistics.shopsystem.updatesBought++;
 		}
 	}
 	

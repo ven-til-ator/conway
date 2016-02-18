@@ -37,9 +37,9 @@ function updateFragmentChance(){
 	//shop available
 	if(displayFragmentChanceShop){
 		//enough money
-		if(fragments >= fragmentChanceShop[fragmentChanceShopIndex]){
+		if(shopsystem.currentFragments >= fragmentChanceShop[fragmentChanceShopIndex]){
 			//pay
-			fragments = fragments - fragmentChanceShop[fragmentChanceShopIndex];
+			shopsystem.currentFragments = shopsystem.currentFragments - fragmentChanceShop[fragmentChanceShopIndex];
 			fragmentChanceShopIndex++;
 			
 			//adjust fragment chance
@@ -49,7 +49,7 @@ function updateFragmentChance(){
 			document.getElementById("fragmentchance-text").style.display = 'block';
 			document.getElementById("fragmentchance").style.display = 'block';
 			
-			updatesBought++;
+			statistics.shopsystem.updatesBought++;
 		}
 	}
 	

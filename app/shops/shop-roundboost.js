@@ -33,9 +33,9 @@ function updateFragmentMuliplicatorRounds(){
 	//shop available
 	if(displayFragmentMultiplicatorPerRoundsShop){
 		//enough money
-		if(fragments >= fragmentPerRoundsShop[fragmentPerRoundsShopIndex]){
+		if(shopsystem.currentFragments >= fragmentPerRoundsShop[fragmentPerRoundsShopIndex]){
 			//pay
-			fragments = fragments - fragmentPerRoundsShop[fragmentPerRoundsShopIndex];
+			shopsystem.currentFragments = shopsystem.currentFragments - fragmentPerRoundsShop[fragmentPerRoundsShopIndex];
 			fragmentPerRoundsShopIndex++;
 			
 			//adjust fragment rounds multiplicator
@@ -48,7 +48,7 @@ function updateFragmentMuliplicatorRounds(){
 			document.getElementById("fragmentperroundsboost-text").style.display = 'block';
 			document.getElementById("fragmentperroundsboost").style.display = 'block';
 			
-			updatesBought++;
+			statistics.shopsystem.updatesBought++;
 		}
 	}
 	

@@ -26,7 +26,7 @@ function displayInfoMessage(message){
 
 //display scoreboard
 function displayScoreboardGUI(){
-	if(displayScoreboard){
+	if(progress.gui.displayStatistics){
 		document.getElementById("max-games").innerHTML = statistics.game.gamesResetAutomatically;
 		document.getElementById("max-resets").innerHTML = statistics.game.gamesResetManually;
 		document.getElementById("min-ratio").innerHTML = statistics.game.lowestRatio;
@@ -35,8 +35,8 @@ function displayScoreboardGUI(){
 		document.getElementById("max-rounds").innerHTML = statistics.game.highestRound;
 		document.getElementById("min-rounds").innerHTML = statistics.game.lowestRound;
 		document.getElementById("max-rounds").innerHTML = statistics.game.highestRound;
-		if(displayFragments){
-			document.getElementById("fragments").innerHTML = fragments;
+		if(progress.shopsystem.gui.displayFragments){
+			document.getElementById("fragments").innerHTML = shopsystem.currentFragments;
 		}
 		if(displaySpeedShop){
 			document.getElementById("autospeed").innerHTML = roundNumber((1/autoSpeed*10000),2);
@@ -51,17 +51,17 @@ function displayScoreboardGUI(){
 		if(displayFragmentChanceShop){
 			document.getElementById("fragmentchance").innerHTML = "1/"+ fragmentChance;
 		}
-		if(displayUpdatesStatistic){
-			document.getElementById("updates").innerHTML = updatesBought;
+		if(progress.shopsystem.gui.displayUpdatesStatistic){
+			document.getElementById("updates").innerHTML = statistics.shopsystem.updatesBought;
 		}
 		if(displayGoldenTurboStatistic){
 			document.getElementById("goldenturbos").innerHTML = goldenTurbosUsed;
 		}
 		
 		//display shops if fragments have changed
-		if(oldFragments != fragments){
+		if(shopsystem.fragmentsLastRound != shopsystem.currentFragments){
 			displayShops();
-			oldFragments = fragments;
+			shopsystem.fragmentsLastRound = shopsystem.currentFragments;
 		}
 	}
 }
@@ -78,14 +78,14 @@ function checkKey(e) {
 	
 	//reset
 	if(event.keyCode == 82){
-		if(displayReset == true){
+		if(progress.gui.displayReset == true){
 			resetGame(false);
 		}
 	}
 	
 	//autoplay
 	if(event.keyCode == 65){
-		if(displayAutoPlay == true){
+		if(progress.gui.displayAutoPlay == true){
 			toggleAutoplay();
 		}
 	}

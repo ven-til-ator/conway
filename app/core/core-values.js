@@ -9,7 +9,9 @@ var statistics = {
 		lowestRound: 0,
 		currentRatio: 0,
 		lowestRatio: 0,
-		highestRatio: 0
+		highestRatio: 0,
+		manuallyClicked: 0,
+		automaticallyClicked: 0
 	}
 }
 
@@ -23,4 +25,18 @@ var engine = {
 	autoplayActive: false,
 	autoplayTimer: null,
 	infoMessageTimer: 0
+}
+
+var progress = {
+	gui: {
+		displayReset: false,
+		displayAutoPlay: false,
+		displayStatistics: false,
+		displayRoundsInfo: false,
+		displayCurrentGameInfo: false,
+		displayHistory: false
+	},
+	engine: {
+		autoReset: false
+	}
 }

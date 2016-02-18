@@ -38,11 +38,11 @@ var fragmentSpeedBoost = 20;
 //update speed
 function updateSpeed(){
 	//speed shop available
-	if(displayFragments){
+	if(progress.shopsystem.gui.displayFragments){
 		//enough money
-		if(fragments >= fragmentSpeedShop[speedShopIndex]){
+		if(shopsystem.currentFragments >= fragmentSpeedShop[speedShopIndex]){
 			//pay
-			fragments = fragments - fragmentSpeedShop[speedShopIndex];
+			shopsystem.currentFragments = shopsystem.currentFragments - fragmentSpeedShop[speedShopIndex];
 			speedShopIndex++;
 			
 			//adjust autoSpeed
@@ -61,7 +61,7 @@ function updateSpeed(){
 			document.getElementById("autospeed-text").style.display = 'block';
 			document.getElementById("autospeed").style.display = 'block';
 			
-			updatesBought++;
+			statistics.shopsystem.updatesBought++;
 		}
 	}
 	

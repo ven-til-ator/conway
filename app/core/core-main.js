@@ -2,7 +2,7 @@
 function autoplay(val) {
 	if (val == "run") {
 		engine.autoplayActive = true;
-		engine.autoplayTimer = window.setInterval(generateFields, autoSpeed);
+		engine.autoplayTimer = window.setInterval(generateFields(true), autoSpeed);
 	} else {
 		engine.autoplayActive = false;
 		window.clearInterval(engine.autoplayTimer);
@@ -21,7 +21,7 @@ function toggleAutoplay() {
 } 
 
 //display board
-function generateFields(){
+function generateFields(automatic){
 	if(engine.resetNeeded) {
 		if(engine.autoplayActive){
 			toggleAutoplay();
@@ -188,7 +188,7 @@ function generateFields(){
 				newValue = 1;
 				var style = "";
 				
-				if(displayFragments && (Math.random()*fragmentChance) < 2){
+				if(progress.shopsystem.gui.displayFragments && (Math.random()*fragmentChance) < 2){
 					fragmentColor = 'rgb(' + (Math.floor(Math.random() * 255)) + ','
 									 + (Math.floor(Math.random() * 255)) + ','
 									 + (Math.floor(Math.random() * 255)) + ')';
@@ -221,7 +221,7 @@ function generateFields(){
 						}
 					}
 					
-					fragments += 1 * tempFragmentMultiplicator;
+					shopsystem.currentFragments += 1 * tempFragmentMultiplicator;
 					displayScoreboardGUI();
 					document.getElementById("money-icon").style.color = fragmentColor;
 				}
@@ -257,7 +257,11 @@ function generateFields(){
 	engine.gridHistory.push(currentValues.toString());
 	
 	statistics.game.currentRounds++;
-	clicks++;
+	if(automatic == true){
+		statistics.game.automaticallyClicked++;
+	} else {
+		statistics.game.manuallyClicked++;
+	}
 	document.getElementById("action-counter").innerHTML = "Round: " + statistics.game.currentRounds;
 	statistics.game.currentRatio = roundNumber(statistics.game.currentActiveFields / (engine.gridRows * engine.gridColumns) * 100, 2);
 	document.getElementById("active-fields-counter").innerHTML = "Fields alive: " + statistics.game.currentActiveFields + " / " + engine.gridRows * engine.gridColumns + " | ratio: " + getRatioHtml(statistics.game.currentRatio, "none");
@@ -269,7 +273,7 @@ function generateFields(){
 		engine.resetNeeded = true;
 		document.getElementById("reset").className = "button-reset-focused";
 		
-		if(progressAutoReset){
+		if(progress.engine.autoReset){
 			resetGame(true)
 		} else {
 			document.getElementById("reset").className = "button-reset-focused";
@@ -280,7 +284,7 @@ function generateFields(){
 	else if(engine.gridHistory[0] == engine.gridHistory[1] || engine.gridHistory[0] == engine.gridHistory[2] || engine.gridHistory[0] == engine.gridHistory[6] || engine.gridHistory[0] == engine.gridHistory[3]){
 		engine.resetNeeded = true;
 		
-		if(progressAutoReset){
+		if(progress.engine.autoReset){
 			resetGame(true)
 		} else {
 			document.getElementById("reset").className = "button-reset-focused";
@@ -357,15 +361,15 @@ function resetGame(automatic){
 	var message = "<div class=\"round\">Round "+ countActionsText +"</div><div class=\"fields\"><div class=\"square\"></div><div class=\"text\">"+ statistics.game.currentActiveFields +"</div></div><div class=\"ratio\">"+ ratioText +"</div>";
 	
 	//bonus fragments
-	if(displayFragments && statistics.game.currentRatio == 0){
+	if(progress.shopsystem.gui.displayFragments && statistics.game.currentRatio == 0){
 		//calculate fragment multiplicator aswell
 		var tempFragmentMultiplicator = fragmentMultiplicator;
 		if(displayFragmentMultiplicatorPerRoundsShop && fragmentPerRoundsShopIndex > 0){
 			tempFragmentMultiplicator = fragmentMultiplicator + Math.floor(statistics.game.currentRounds/fragmentMuliplicatorRounds);
 		}
 		
-		message += "<div class=\"fragmentBonus\">"+ ((fragmentBonus * (gridShopIndex + 1)) * tempFragmentMultiplicator) +" <i class=\"fa fa-money\"></i></div>";
-		fragments += (fragmentBonus * (gridShopIndex + 1)) * tempFragmentMultiplicator;
+		message += "<div class=\"fragmentBonus\">"+ ((shopsystem.fragementBonusEmptyGrid * (gridShopIndex + 1)) * tempFragmentMultiplicator) +" <i class=\"fa fa-money\"></i></div>";
+		shopsystem.currentFragments += (shopsystem.fragementBonusEmptyGrid * (gridShopIndex + 1)) * tempFragmentMultiplicator;
 	}
 	
 	if(automatic == false){
@@ -446,4 +450,135 @@ function getRatioHtml(ratio, type){
 	}
 	
 	return ratioText;
+}
+
+//check progress
+function checkProgress(){
+	//display reset after 1 click
+	if(statistics.game.manuallyClicked >= 1 && !progress.gui.displayReset){
+		progress.gui.displayReset = true;
+		//console.log("Reset Button Unlocked!");
+		displayProgressMessage("Reset Button Unlocked!");
+	}
+	
+	//display rounds after 10 click
+	if(statistics.game.manuallyClicked >= 10 && !progress.gui.displayRoundsInfo){
+		progress.gui.displayRoundsInfo = true;
+		//console.log("Rounds Unlocked!");
+		displayProgressMessage("Rounds Unlocked!");
+	}
+	
+	//display game info after 25 click
+	if(statistics.game.manuallyClicked >= 25 && !progress.gui.displayCurrentGameInfo){
+		progress.gui.displayCurrentGameInfo = true;
+		//console.log("Game Info Unlocked!");
+		displayProgressMessage("Game Info Unlocked!");
+	}
+	
+	//display auto play after 50 click
+	if(statistics.game.manuallyClicked >= 50 && !progress.gui.displayAutoPlay){
+		progress.gui.displayAutoPlay = true;
+		//console.log("Autoplay Unlocked!");
+		displayProgressMessage("Autoplay Unlocked!");
+	}
+	
+	//activate auto reset after 3 resets
+	if(statistics.game.gamesResetManually >= 3 && !progress.engine.autoReset){
+		progress.engine.autoReset = true;
+		//console.log("Auto Reset Unlocked!");
+		displayProgressMessage("Auto Reset Unlocked!");
+	}
+	
+	//display history
+	if(statistics.game.gamesResetAutomatically >= 3 && !progress.gui.displayHistory){
+		progress.gui.displayHistory = true;
+		//console.log("History Unlocked!");
+		displayProgressMessage("History Unlocked!");
+	}
+	
+	//display highscores
+	if(statistics.game.gamesResetAutomatically >= 6 && !progress.gui.displayStatistics){
+		progress.gui.displayStatistics = true;
+		//console.log("Scoreboard Unlocked!");
+		displayProgressMessage("Scoreboard Unlocked!");
+	}
+	
+	//display fragments
+	if(statistics.game.gamesResetAutomatically >= 9 && !progress.shopsystem.gui.displayFragments){
+		progress.shopsystem.gui.displayFragments = true;
+		//console.log("Fragments Unlocked!");
+		displayProgressMessage("Fragments Unlocked!");
+	}
+	
+	//display speedShop
+	if(shopsystem.currentFragments >= fragmentSpeedShop[0] && !displaySpeedShop){
+		displaySpeedShop = true;
+	}
+	
+	//display gridShop
+	if(shopsystem.currentFragments >= fragmentGridShop[0] && !displayGridShop){
+		displayGridShop = true;
+	}
+	
+	//display fragmentChanceShop
+	if(shopsystem.currentFragments >= fragmentChanceShop[0] && !displayFragmentChanceShop){
+		displayFragmentChanceShop = true;
+	}
+	
+	//display fragmentPerRoundsShop
+	if(shopsystem.currentFragments >= fragmentPerRoundsShop[0] && !displayFragmentMultiplicatorPerRoundsShop){
+		displayFragmentMultiplicatorPerRoundsShop = true;
+	}
+	
+	//display fragment multiplicator
+	if(shopsystem.currentFragments >= fragmentMultiplicatorShop[0] && !displayFragmentMultiplicatorShop){
+		displayFragmentMultiplicatorShop = true;
+	}
+	
+	//updates counter
+	if(statistics.shopsystem.updatesBought > 0 && !progress.shopsystem.gui.displayUpdatesStatistic){
+		progress.shopsystem.gui.displayUpdatesStatistic = true;
+	}
+	
+	
+	//display functionalities
+	if(progress.gui.displayReset){
+		document.getElementById("reset").style.display = 'inline-block';
+	}
+	
+	if(progress.gui.displayRoundsInfo){
+		document.getElementById("action-counter").style.display = 'block';
+	}
+	
+	if(progress.gui.displayCurrentGameInfo){
+		document.getElementById("active-fields-counter").style.display = 'block';
+	}
+	
+	if(progress.gui.displayAutoPlay){
+		document.getElementById("autoplay").style.display = 'inline-block';
+	}
+	
+	if(progress.gui.displayStatistics){
+		document.getElementById("highscores").style.display = 'block';
+	}
+	
+	if(progress.gui.displayHistory){
+		document.getElementById("history").style.display = 'block';
+	}
+	
+	if(progress.shopsystem.gui.displayFragments){
+		//fragments counter
+		document.getElementById("fragments-text").style.display = 'block';
+		document.getElementById("fragments").style.display = 'block';
+	}
+	
+	if(displayGoldenTurboStatistic){
+		document.getElementById("goldenturbos-text").style.display = 'block';
+		document.getElementById("goldenturbos").style.display = 'block';
+	}
+	
+	if(progress.shopsystem.gui.displayUpdatesStatistic){
+		document.getElementById("updates-text").style.display = 'block';
+		document.getElementById("updates").style.display = 'block';
+	}
 }
