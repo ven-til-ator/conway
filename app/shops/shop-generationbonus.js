@@ -21,7 +21,7 @@ shopsystem.shops['generationbonus'] = {
 		
 			//display html
 			output += "<div>";
-				output += "<div id=\"payFragmentRoundMultiplicatorButton\" class=\""+ buttonClass +"\" onClick=\"buy('generationbonus');\">(3) Generations Boost "+ (shopsystem.shops['generationbonus'].values.index+1) +" - "+ shopsystem.shops['generationbonus'].pricing[shopsystem.shops['generationbonus'].values.index] +" <i class=\"fa fa-money\"></i>";
+				output += "<div id=\"payFragmentRoundMultiplicatorButton\" class=\""+ buttonClass +"\" onClick=\"shopsystem.buy('generationbonus');\">(3) Generations Boost "+ (shopsystem.shops['generationbonus'].values.index+1) +" - "+ shopsystem.shops['generationbonus'].pricing[shopsystem.shops['generationbonus'].values.index] +" <i class=\"fa fa-money\"></i>";
 				output += "</div>";
 			output += "</div>";
 			output += "<div class=\"clearfix\"> </div>";
