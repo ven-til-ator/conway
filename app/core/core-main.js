@@ -10,7 +10,6 @@ function generateFields(automatic){
 	}
 
 	var countFields = engine.gridRows * engine.gridColumns;
-	
 	var currentValues = new Array();
 	var nextValues = new Array();
 	
@@ -30,7 +29,6 @@ function generateFields(automatic){
 			//colorize grid
 			document.getElementById("board").style.border = goldenTurboGridColor;
 		}
-		
 	} else if (goldenTurboGenerations == 1){
 		goldenTurboGenerations--;
 		
@@ -64,24 +62,16 @@ function generateFields(automatic){
 		}
 	}
 	
-	
-	
 	//manipulating data
-
 	for(var i = 0; i < engine.gridRows; i++){
-	
 		for(var j = 1; j <= engine.gridColumns; j++){
-		
 			//current Field
 			var fieldNumber = j + (i * engine.gridRows);
-			
 			var additionalDiv = "";
 			
 			//check alive cells around
-			
 			var countAliveNeighbours = 0;
 			var	newValue = 0;
-			
 			
 			//check if there are three alive cells around
 			
@@ -121,7 +111,6 @@ function generateFields(automatic){
 				}
 			}
 			
-			
 			if(i < (engine.gridRows - 1)){
 				//bottom
 				var checkFieldNumber = fieldNumber + engine.gridColumns;
@@ -129,7 +118,6 @@ function generateFields(automatic){
 					countAliveNeighbours++;
 				}
 			}
-			
 			
 			//right column
 			if(i < engine.gridColumns){
@@ -140,7 +128,6 @@ function generateFields(automatic){
 						countAliveNeighbours++;
 					}
 				}
-				
 				
 				//middle
 				var checkFieldNumber = fieldNumber + 1;
@@ -156,7 +143,6 @@ function generateFields(automatic){
 					}
 				}
 			}
-			
 			
 			//RULES TO BE ALIVE:
 			
@@ -222,7 +208,6 @@ function generateFields(automatic){
 			}
 			
 			nextValues.push(newValue);
-			
 		
 			var fieldElement = document.getElementById("square" + getInputFieldNumber(fieldNumber));
 			fieldElement.innerHTML = "<input type=\"hidden\" id=\"inputSquare" + getInputFieldNumber(fieldNumber) + "\" value=" + newValue + " />" + additionalDiv;
