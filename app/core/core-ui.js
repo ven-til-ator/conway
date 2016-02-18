@@ -26,42 +26,42 @@ function displayInfoMessage(message){
 
 //display scoreboard
 function displayScoreboardGUI(){
-	if(displayScoreboard){
+	if(progress.gui.displayStatistics){
 		document.getElementById("max-games").innerHTML = statistics.game.gamesResetAutomatically;
 		document.getElementById("max-resets").innerHTML = statistics.game.gamesResetManually;
 		document.getElementById("min-ratio").innerHTML = statistics.game.lowestRatio;
 		document.getElementById("max-ratio").innerHTML = statistics.game.highestRatio;
-		document.getElementById("min-rounds").innerHTML = statistics.game.lowestRound;
-		document.getElementById("max-rounds").innerHTML = statistics.game.highestRound;
-		document.getElementById("min-rounds").innerHTML = statistics.game.lowestRound;
-		document.getElementById("max-rounds").innerHTML = statistics.game.highestRound;
-		if(displayFragments){
-			document.getElementById("fragments").innerHTML = fragments;
+		document.getElementById("min-rounds").innerHTML = statistics.game.lowestGeneration;
+		document.getElementById("max-rounds").innerHTML = statistics.game.highestGeneration;
+		document.getElementById("min-rounds").innerHTML = statistics.game.lowestGeneration;
+		document.getElementById("max-rounds").innerHTML = statistics.game.highestGeneration;
+		if(progress.shopsystem.gui.displayFragments){
+			document.getElementById("fragments").innerHTML = shopsystem.currentFragments;
 		}
-		if(displaySpeedShop){
-			document.getElementById("autospeed").innerHTML = roundNumber((1/autoSpeed*10000),2);
+		if(progress.shopsystem.gui.displayVelocityStatistic){
+			document.getElementById("autospeed").innerHTML = shopsystem.shops['velocity'].velocityValue();
 		}
-		if(displayGridShop){
+		if(progress.shopsystem.gui.displayGridStatistic){
 			document.getElementById("gridsize").innerHTML = engine.gridColumns+"x"+engine.gridRows;
 		}
-		if(displayFragmentMultiplicatorPerRoundsShop && fragmentPerRoundsShopIndex > 0){
-			document.getElementById("fragmentperroundsboost").innerHTML = fragmentMuliplicatorRounds;
-			document.getElementById("fragmentperrounds").innerHTML = fragmentMultiplicator + Math.floor(statistics.game.currentRounds/fragmentMuliplicatorRounds);
+		if(progress.shopsystem.gui.displayFragmentMultiplicatorStatistic && shopsystem.shops['generationbonus'].values.index > 0){
+			document.getElementById("fragmentperroundsboost").innerHTML = shopsystem.shops['generationbonus'].values.bonusEveryGeneration;
+			document.getElementById("fragmentperrounds").innerHTML = shopsystem.shops['multiplicator'].values.fragmentMultiplicator + Math.floor(statistics.game.currentGenerations/shopsystem.shops['generationbonus'].values.bonusEveryGeneration);
 		}
-		if(displayFragmentChanceShop){
-			document.getElementById("fragmentchance").innerHTML = "1/"+ fragmentChance;
+		if(progress.shopsystem.gui.displayFragmentChanceStatistic && shopsystem.shops['fragmentchance'].values.index > 0){
+			document.getElementById("fragmentchance").innerHTML = "1/"+ shopsystem.shops['fragmentchance'].values.chance;
 		}
-		if(displayUpdatesStatistic){
-			document.getElementById("updates").innerHTML = updatesBought;
+		if(progress.shopsystem.gui.displayUpdatesStatistic){
+			document.getElementById("updates").innerHTML = statistics.shopsystem.updatesBought;
 		}
 		if(displayGoldenTurboStatistic){
 			document.getElementById("goldenturbos").innerHTML = goldenTurbosUsed;
 		}
 		
 		//display shops if fragments have changed
-		if(oldFragments != fragments){
-			displayShops();
-			oldFragments = fragments;
+		if(shopsystem.fragmentsLastGeneration != shopsystem.currentFragments){
+			shopsystem.displayShops();
+			shopsystem.fragmentsLastGeneration = shopsystem.currentFragments;
 		}
 	}
 }
@@ -78,14 +78,14 @@ function checkKey(e) {
 	
 	//reset
 	if(event.keyCode == 82){
-		if(displayReset == true){
+		if(progress.gui.displayReset == true){
 			resetGame(false);
 		}
 	}
 	
 	//autoplay
 	if(event.keyCode == 65){
-		if(displayAutoPlay == true){
+		if(progress.gui.displayAutoPlay == true){
 			toggleAutoplay();
 		}
 	}
@@ -98,19 +98,19 @@ function checkKey(e) {
 	//SHOPS
 	if(event.keyCode == 49){
 		//speed
-		updateSpeed();
+		shopsystem.buy('velocity');
 	} else if(event.keyCode == 50){
 		//grid
-		updateGrid();
+		shopsystem.buy('grid');
 	} else if(event.keyCode == 51){
 		//fragment multiplicator rounds
-		updateFragmentMuliplicatorRounds()
+		shopsystem.buy('generationbonus');
 	} else if(event.keyCode == 52){
 		//fragment chance
-		updateFragmentChance();
+		shopsystem.buy('fragmentchance');
 	} else if(event.keyCode == 53){
 		//fragment multiplicator
-		updateFragmentMultiplicator();
+		shopsystem.buy('multiplicator');
 	} else if(event.keyCode == 54){
 		
 	} else if(event.keyCode == 55){

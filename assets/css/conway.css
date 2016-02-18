@@ -67,7 +67,7 @@ div.clearfix{
 
 .page-container .history  .round{
 	float: left;
-	width: 100px;
+	width: 120px;
 	text-align: left;
 	height: 25px;
 }
@@ -84,7 +84,7 @@ div.clearfix{
 	float: left;
 	width: 60px;
 	text-align: right;
-	height: 25px;	
+	height: 25px;
 }
 
 .page-container .history  .fields .text{
