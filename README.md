@@ -23,3 +23,4 @@ Supports:
 * Block F5 or Backspace + save progress in html5 local cache
 * Tooltips for each element (Shops / Statistics)
 * Overall rounds counter statistic (for all games)
+* Keyboard (space + num)
