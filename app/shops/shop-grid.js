@@ -11,7 +11,7 @@ shopsystem.shops['grid'] = {
 	
 		if(shopsystem.shops['grid'].visible && shopsystem.shops['grid'].values.index < shopsystem.shops['grid'].pricing.length){
 			//check if button is payable
-			if(shopsystem.currentFragments >= shopsystem.shops['grid'].pricing[shopsystem.shops['grid'].values.index]){
+			if(shopsystem.values.currentFragments >= shopsystem.shops['grid'].pricing[shopsystem.shops['grid'].values.index]){
 				buttonClass = "paybutton-active";
 			} else {
 				buttonClass = "paybutton";
@@ -31,9 +31,9 @@ shopsystem.shops['grid'] = {
 		//gridshop is activated
 		if(shopsystem.shops['grid'].visible){
 			//enough money
-			if(shopsystem.currentFragments >= shopsystem.shops['grid'].pricing[shopsystem.shops['grid'].values.index]){
+			if(shopsystem.values.currentFragments >= shopsystem.shops['grid'].pricing[shopsystem.shops['grid'].values.index]){
 				//pay
-				shopsystem.currentFragments = shopsystem.currentFragments - shopsystem.shops['grid'].pricing[shopsystem.shops['grid'].values.index];
+				shopsystem.values.currentFragments -= shopsystem.shops['grid'].pricing[shopsystem.shops['grid'].values.index];
 				shopsystem.shops['grid'].values.index++;
 				
 				//update grid

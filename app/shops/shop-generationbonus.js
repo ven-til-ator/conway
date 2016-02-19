@@ -3,8 +3,11 @@ progress.shopsystem.gui.displayFragmentMultiplicatorStatistic = false;
 shopsystem.shops['generationbonus'] = {
 	values: {
 		index: 0,
-		bonusEveryGeneration: 205,
-		generationbonusUpdateValue: 5,
+		active: false,
+		generationNeeded: 50,
+		generationBonus: 1,
+		generationNeededUpdateValue: 25,
+		generationBonusUpdateValue: 2,
 	},
 	priority: 3,
 	visible: false,
@@ -13,7 +16,7 @@ shopsystem.shops['generationbonus'] = {
 	
 		if(shopsystem.shops['generationbonus'].visible && shopsystem.shops['generationbonus'].values.index < shopsystem.shops['generationbonus'].pricing.length){
 			//check if button is payable
-			if(shopsystem.currentFragments >= shopsystem.shops['generationbonus'].pricing[shopsystem.shops['generationbonus'].values.index]){
+			if(shopsystem.values.currentFragments >= shopsystem.shops['generationbonus'].pricing[shopsystem.shops['generationbonus'].values.index]){
 				buttonClass = "paybutton-active";
 			} else {
 				buttonClass = "paybutton";
@@ -32,13 +35,20 @@ shopsystem.shops['generationbonus'] = {
 	update: function(){
 		if(shopsystem.shops['generationbonus'].visible){
 			//enough money
-			if(shopsystem.currentFragments >= shopsystem.shops['generationbonus'].pricing[shopsystem.shops['generationbonus'].values.index]){
+			if(shopsystem.values.currentFragments >= shopsystem.shops['generationbonus'].pricing[shopsystem.shops['generationbonus'].values.index]){
 				//pay
-				shopsystem.currentFragments = shopsystem.currentFragments - shopsystem.shops['generationbonus'].pricing[shopsystem.shops['generationbonus'].values.index];
+				shopsystem.values.currentFragments -= shopsystem.shops['generationbonus'].pricing[shopsystem.shops['generationbonus'].values.index];
 				shopsystem.shops['generationbonus'].values.index++;
 				
-				//adjust fragment rounds multiplicator
-				shopsystem.shops['generationbonus'].values.bonusEveryGeneration -= shopsystem.shops['generationbonus'].values.generationbonusUpdateValue;
+				//activate or adjust
+				if(shopsystem.shops['generationbonus'].values.active){
+					//adjust fragment generation needed value
+					shopsystem.shops['generationbonus'].values.generationNeeded += shopsystem.shops['generationbonus'].values.generationNeededUpdateValue;
+					//adjust fragment generation bonus value
+					shopsystem.shops['generationbonus'].values.generationBonus *= shopsystem.shops['generationbonus'].values.generationBonusUpdateValue;
+				} else {
+					shopsystem.shops['generationbonus'].values.active = true;
+				}
 			
 				displayProgressMessage("Fragment Generation Multiplicator "+ shopsystem.shops['generationbonus'].values.index +" Unlocked!");
 				document.getElementById("fragmentperrounds-text").style.display = 'block';
@@ -57,26 +67,23 @@ shopsystem.shops['generationbonus'] = {
 		displayScoreboardGUI();
 	},
 	pricing: [
-		25,
-		50,		//2
-		75,
-		100,	
-		125,	//5
-		150,
-		175,
+		50,
+		100,	//2
 		200,
-		225,
-		250,	//10
-		275,
-		300,
-		325,
-		350,
-		375,	//15
-		400,
-		425,
-		450,
-		475,
-		500,	//20
-		555
-	]
+		400,	
+		800,	//5
+		1600,
+		3200,
+		6400,
+		12800,
+		25600	//10
+	],
+	getBonusAmount: function(){
+		//check if it is active
+		if(shopsystem.shops['generationbonus'].values.active){
+			return Math.floor((statistics.game.currentGenerations / shopsystem.shops['generationbonus'].values.generationNeeded) * shopsystem.shops['generationbonus'].values.generationBonus);
+		} else {
+			return 0;
+		}
+	}
 }

@@ -3,7 +3,7 @@ progress.shopsystem.gui.displayFragmentMultiplicatorStatistic = false;
 shopsystem.shops['multiplicator'] = {
 	values: {
 		index: 0,
-		fragmentMultiplicator: 1,
+		fragmentMultiplicator: 0,
 		fragmentMultiplicatorUpdateValue: 1
 	},
 	priority: 5,
@@ -13,7 +13,7 @@ shopsystem.shops['multiplicator'] = {
 	
 		if(shopsystem.shops['multiplicator'].visible && shopsystem.shops['multiplicator'].values.index < shopsystem.shops['multiplicator'].pricing.length){
 			//check if button is payable
-			if(shopsystem.currentFragments >= shopsystem.shops['multiplicator'].pricing[shopsystem.shops['multiplicator'].values.index]){
+			if(shopsystem.values.currentFragments >= shopsystem.shops['multiplicator'].pricing[shopsystem.shops['multiplicator'].values.index]){
 				buttonClass = "paybutton-active";
 			} else {
 				buttonClass = "paybutton";
@@ -33,11 +33,12 @@ shopsystem.shops['multiplicator'] = {
 		//shop is activated
 		if(shopsystem.shops['multiplicator'].visible){
 			//enough money
-			if(shopsystem.shops['multiplicator'].visible && shopsystem.currentFragments >= shopsystem.shops['multiplicator'].pricing[shopsystem.shops['multiplicator'].values.index]){
+			if(shopsystem.shops['multiplicator'].visible && shopsystem.values.currentFragments >= shopsystem.shops['multiplicator'].pricing[shopsystem.shops['multiplicator'].values.index]){
 				//pay
-				shopsystem.currentFragments = shopsystem.currentFragments - shopsystem.shops['multiplicator'].pricing[shopsystem.shops['multiplicator'].values.index];
+				shopsystem.values.currentFragments -= shopsystem.shops['multiplicator'].pricing[shopsystem.shops['multiplicator'].values.index];
 				shopsystem.shops['multiplicator'].values.index++;
 				
+				//adjust multiplicator
 				shopsystem.shops['multiplicator'].values.fragmentMultiplicator += shopsystem.shops['multiplicator'].values.fragmentMultiplicatorUpdateValue;
 				
 				displayProgressMessage("Fragment Multiplicator "+ shopsystem.shops['multiplicator'].values.index +" Unlocked!");

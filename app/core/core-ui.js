@@ -36,7 +36,7 @@ function displayScoreboardGUI(){
 		document.getElementById("min-rounds").innerHTML = statistics.game.lowestGeneration;
 		document.getElementById("max-rounds").innerHTML = statistics.game.highestGeneration;
 		if(progress.shopsystem.gui.displayFragments){
-			document.getElementById("fragments").innerHTML = shopsystem.currentFragments;
+			document.getElementById("fragments").innerHTML = shopsystem.values.currentFragments;
 		}
 		if(progress.shopsystem.gui.displayVelocityStatistic){
 			document.getElementById("autospeed").innerHTML = shopsystem.shops['velocity'].velocityValue();
@@ -45,8 +45,8 @@ function displayScoreboardGUI(){
 			document.getElementById("gridsize").innerHTML = engine.gridColumns+"x"+engine.gridRows;
 		}
 		if(progress.shopsystem.gui.displayFragmentMultiplicatorStatistic && shopsystem.shops['generationbonus'].values.index > 0){
-			document.getElementById("fragmentperroundsboost").innerHTML = shopsystem.shops['generationbonus'].values.bonusEveryGeneration;
-			document.getElementById("fragmentperrounds").innerHTML = shopsystem.shops['multiplicator'].values.fragmentMultiplicator + Math.floor(statistics.game.currentGenerations/shopsystem.shops['generationbonus'].values.bonusEveryGeneration);
+			document.getElementById("fragmentperroundsboost").innerHTML = shopsystem.shops['generationbonus'].values.generationNeeded;
+			document.getElementById("fragmentperrounds").innerHTML = shopsystem.getFragmentsPerGeneration(false);
 		}
 		if(progress.shopsystem.gui.displayFragmentChanceStatistic && shopsystem.shops['fragmentchance'].values.index > 0){
 			document.getElementById("fragmentchance").innerHTML = "1/"+ shopsystem.shops['fragmentchance'].values.chance;
@@ -59,9 +59,9 @@ function displayScoreboardGUI(){
 		}
 		
 		//display shops if fragments have changed
-		if(shopsystem.fragmentsLastGeneration != shopsystem.currentFragments){
+		if(shopsystem.fragmentsLastGeneration != shopsystem.values.currentFragments){
 			shopsystem.displayShops();
-			shopsystem.fragmentsLastGeneration = shopsystem.currentFragments;
+			shopsystem.values.fragmentsLastGeneration = shopsystem.values.currentFragments;
 		}
 	}
 }
@@ -72,7 +72,7 @@ function checkKey(e) {
     //console.log(event.keyCode)
 	
 	//next round
-	if(event.keyCode == 13 || event.keyCode == 78){
+	if(event.keyCode == 13 || event.keyCode == 78 || event.keyCode == 32){
 		generateFields();
 	}
 	
@@ -96,30 +96,30 @@ function checkKey(e) {
 	}
 	
 	//SHOPS
-	if(event.keyCode == 49){
+	if(event.keyCode == 49 || event.keyCode == 97){
 		//speed
 		shopsystem.buy('velocity');
-	} else if(event.keyCode == 50){
+	} else if(event.keyCode == 50 || event.keyCode == 98){
 		//grid
 		shopsystem.buy('grid');
-	} else if(event.keyCode == 51){
+	} else if(event.keyCode == 51 || event.keyCode == 99){
 		//fragment multiplicator rounds
 		shopsystem.buy('generationbonus');
-	} else if(event.keyCode == 52){
+	} else if(event.keyCode == 52 || event.keyCode == 100){
 		//fragment chance
 		shopsystem.buy('fragmentchance');
-	} else if(event.keyCode == 53){
+	} else if(event.keyCode == 53 || event.keyCode == 101){
 		//fragment multiplicator
 		shopsystem.buy('multiplicator');
-	} else if(event.keyCode == 54){
+	} else if(event.keyCode == 54 || event.keyCode == 102){
 		
-	} else if(event.keyCode == 55){
+	} else if(event.keyCode == 55 || event.keyCode == 103){
 		
-	} else if(event.keyCode == 56){
+	} else if(event.keyCode == 56 || event.keyCode == 104){
 		
-	} else if(event.keyCode == 57){
+	} else if(event.keyCode == 57 || event.keyCode == 105){
 		
-	} else if(event.keyCode == 48){
+	} else if(event.keyCode == 48 || event.keyCode == 96){
 		
 	}
 }

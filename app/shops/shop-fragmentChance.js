@@ -13,7 +13,7 @@ shopsystem.shops['fragmentchance'] = {
 	
 		if(shopsystem.shops['fragmentchance'].visible && shopsystem.shops['fragmentchance'].values.index < shopsystem.shops['fragmentchance'].pricing.length){
 			//check if button is payable
-			if(shopsystem.currentFragments >= shopsystem.shops['fragmentchance'].pricing[shopsystem.shops['fragmentchance'].values.index]){
+			if(shopsystem.values.currentFragments >= shopsystem.shops['fragmentchance'].pricing[shopsystem.shops['fragmentchance'].values.index]){
 				buttonClass = "paybutton-active";
 			} else {
 				buttonClass = "paybutton";
@@ -33,9 +33,9 @@ shopsystem.shops['fragmentchance'] = {
 		//shop available
 		if(shopsystem.shops['fragmentchance'].visible){
 			//enough money
-			if(shopsystem.currentFragments >= shopsystem.shops['fragmentchance'].pricing[shopsystem.shops['fragmentchance'].values.index]){
+			if(shopsystem.values.currentFragments >= shopsystem.shops['fragmentchance'].pricing[shopsystem.shops['fragmentchance'].values.index]){
 				//pay
-				shopsystem.currentFragments = shopsystem.currentFragments - shopsystem.shops['fragmentchance'].pricing[shopsystem.shops['fragmentchance'].values.index];
+				shopsystem.values.currentFragments -= shopsystem.shops['fragmentchance'].pricing[shopsystem.shops['fragmentchance'].values.index];
 				shopsystem.shops['fragmentchance'].values.index++;
 				
 				//adjust fragment chance

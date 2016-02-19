@@ -185,7 +185,7 @@ function generateFields(automatic){
 						}
 					}
 					
-					shopsystem.currentFragments += 1 * tempFragmentMultiplicator;
+					shopsystem.values.currentFragments += shopsystem.getFragmentsPerGeneration(false);
 					displayScoreboardGUI();
 					document.getElementById("money-icon").style.color = fragmentColor;
 				}
@@ -371,8 +371,8 @@ function resetGame(automatic){
 			tempFragmentMultiplicator = shopsystem.shops['multiplicator'].values.fragmentMultiplicator + Math.floor(statistics.game.currentGenerations/shopsystem.shops['generationbonus'].values.bonusEveryGeneration);
 		}
 		
-		message += "<div class=\"fragmentBonus\">"+ ((shopsystem.fragementBonusEmptyGrid * (shopsystem.shops['grid'].values.index + 1)) * tempFragmentMultiplicator) +" <i class=\"fa fa-money\"></i></div>";
-		shopsystem.currentFragments += (shopsystem.fragementBonusEmptyGrid * (shopsystem.shops['grid'].values.index + 1)) * tempFragmentMultiplicator;
+		message += "<div class=\"fragmentBonus\">"+ (shopsystem.getFragmentsPerGeneration(true)) +" <i class=\"fa fa-money\"></i></div>";
+		shopsystem.values.currentFragments += shopsystem.getFragmentsPerGeneration(true);
 	}
 	
 	if(automatic == false){

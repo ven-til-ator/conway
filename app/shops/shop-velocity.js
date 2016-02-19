@@ -13,7 +13,7 @@ shopsystem.shops['velocity'] = {
 		var output = "";
 		
 		if(shopsystem.shops['velocity'].visible && shopsystem.shops['velocity'].values.index < shopsystem.shops['velocity'].pricing.length){
-			if(shopsystem.currentFragments >= shopsystem.shops['velocity'].pricing[shopsystem.shops['velocity'].values.index]){
+			if(shopsystem.values.currentFragments >= shopsystem.shops['velocity'].pricing[shopsystem.shops['velocity'].values.index]){
 				buttonClass = "paybutton-active";
 			} else {
 				buttonClass = "paybutton";
@@ -32,9 +32,9 @@ shopsystem.shops['velocity'] = {
 		//speed shop available
 		if(progress.shopsystem.gui.displayFragments){
 			//enough money
-			if(shopsystem.currentFragments >= shopsystem.shops['velocity'].pricing[shopsystem.shops['velocity'].values.index]){
+			if(shopsystem.values.currentFragments >= shopsystem.shops['velocity'].pricing[shopsystem.shops['velocity'].values.index]){
 				//pay
-				shopsystem.currentFragments = shopsystem.currentFragments - shopsystem.shops['velocity'].pricing[shopsystem.shops['velocity'].values.index];
+				shopsystem.values.currentFragments -= shopsystem.shops['velocity'].pricing[shopsystem.shops['velocity'].values.index];
 				shopsystem.shops['velocity'].values.index++;
 				
 				//adjust autoSpeed

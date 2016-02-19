@@ -1,11 +1,33 @@
 var shopsystem = {
-	currentFragments: 0,
-	fragementsLastGeneration: 0,
-	fragementBonusEmptyGrid: 5,
+	//main values of the shopsystem
+	values: {
+		currentFragments: 0,
+		fragementsLastGeneration: 0,
+		fragementBonusEmptyGrid: 5,
+		fragmentsPerGeneration: 1
+	},
 	shops: new Array(),
+	//buy the specified shop
 	buy: function(shopname){
 		shopsystem.shops[shopname].update();
 	},
+	//get the fragment count for the current generation or empty grid
+	getFragmentsPerGeneration: function(emptyGrid){
+		//emptygrid bonus
+		if(emptyGrid){
+			return shopsystem.values.fragementBonusEmptyGrid * 
+					(shopsystem.values.fragmentsPerGeneration 
+						+ shopsystem.shops['multiplicator'].values.fragmentMultiplicator
+						+ shopsystem.shops['generationbonus'].getBonusAmount());
+		} 
+		//normal fragment
+		else {	
+			return (shopsystem.values.fragmentsPerGeneration 
+						+ shopsystem.shops['multiplicator'].values.fragmentMultiplicator
+						+ shopsystem.shops['generationbonus'].getBonusAmount());
+		}
+	},
+	//display all shop buttons
 	displayShops: function(){
 		var outputArray = new Array();
 		var output = "";
@@ -46,13 +68,14 @@ var shopsystem = {
 		
 		document.getElementById("shops").innerHTML = output;
 	},
+	//check progress of the shops
 	checkProgress: function(){
 		Object.keys(shopsystem.shops).forEach(
 			function(key, index) {
 				var element = shopsystem.shops[key];
 				
 				//progress reached
-				if(shopsystem.currentFragments >= element.pricing[0] && !element.visible){
+				if(shopsystem.values.currentFragments >= element.pricing[0] && !element.visible){
 					element.visible = true;
 				}
 			}
@@ -60,11 +83,13 @@ var shopsystem = {
 	}
 }
 
+//statistics
 statistics.shopsystem = {
 	fragmentsOverall: 0,
 	updatesBought: 0
 }
 
+//progress
 progress.shopsystem = {
 	gui: {
 		displayUpdatesStatistic: false,
