@@ -5,8 +5,17 @@
 			Conway's Game of Life
 		</title>
 		<meta charset="utf-8" />
-		<script type= "text/javascript" src="app/app.js">
-		</script>
+		<script type= "text/javascript" src="app/app.js"></script>
+		<script type= "text/javascript" src="app/core/core-values.js"></script>
+		<script type= "text/javascript" src="app/core/core-ui.js"></script>
+		<script type= "text/javascript" src="app/core/core-main.js"></script>
+		<script type= "text/javascript" src="app/core/core-shopsystem.js"></script>
+		
+		<script type= "text/javascript" src="app/shops/shop-fragmentchance.js"></script>
+		<script type= "text/javascript" src="app/shops/shop-grid.js"></script>
+		<script type= "text/javascript" src="app/shops/shop-velocity.js"></script>
+		<script type= "text/javascript" src="app/shops/shop-multiplicator.js"></script>
+		<script type= "text/javascript" src="app/shops/shop-generationbonus.js"></script>
 		<link rel="stylesheet" href="assets/css/conway.css" type="text/css" />
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	</head>
@@ -18,22 +27,22 @@
 			</div>
 
 			<div class="headline">
-				Conway's Game of Life!
+				Conway's Game of Life
 			</div>
 
 			<div class="formular">
 				<form method="post">
-					<input id="click" type="button" name="currentField" value="Next Step" class="button" onmousedown="generateFields();" autofocus />
-					<input id="autoplay" type="button" name="autoplay" value="Toggle Autoplay" class="buttonDeactivated" onmousedown="toggleAutoplay();"/>
-					<input id="reset" type="button" name="reset" value="Reset Game" class="button-reset" onmousedown="resetGame(false);"/>
+					<input id="click" type="button" name="currentField" value="Next Generation (N)" class="button" onmousedown="nextGeneration();" autofocus />
+					<input id="autoplay" type="button" name="autoplay" value="Toggle Autoplay (A)" class="buttonDeactivated" onmousedown="toggleAutoplay();"/>
+					<input id="reset" type="button" name="reset" value="Reset Game (R)" class="button-reset" onmousedown="newGame();"/>
 				</form>
 			</div>
 
 			<div id="action-counter">
-				Please start
+				
 			</div>
 			<div id="active-fields-counter">
-				Bring us to life!!!
+				
 			</div>
 
 			<div id="history" class="history">
@@ -46,14 +55,14 @@
 				<div id="max-resets-text" class="text">Games reset:</div>
 				<div id="max-resets" class="value">0</div>
 				<div class="clearfix"></div>
-				<div id="max-rounds-text" class="text">Max. Rounds:</div>
+				<div id="max-rounds-text" class="text">Max Generations:</div>
 				<div id="max-rounds" class="value high">0</div>
-				<div id="min-rounds-text" class="text">Min. Rounds:</div>
+				<div id="min-rounds-text" class="text">Min Generations:</div>
 				<div id="min-rounds" class="value low">0</div>
 				<div class="clearfix"></div>
-				<div id="max-ratio-text" class="text">Max. Ratio:</div>
+				<div id="max-ratio-text" class="text">Max Ratio:</div>
 				<div id="max-ratio" class="value high">0</div>
-				<div id="min-ratio-text" class="text">Min. Ratio:</div>
+				<div id="min-ratio-text" class="text">Min Ratio:</div>
 				<div id="min-ratio" class="value low">0</div>
 				<div class="clearfix"></div>
 				<div id="autospeed-text" class="text">Velocity:</div>
@@ -77,7 +86,7 @@
 				<div class="clearfix"></div>
 				<div id="fragmentperroundsboost-text" class="text">Boost every:</div>
 				<div id="fragmentperroundsboost" class="value">0</div>
-				<div id="fragmentperrounds-text" class="text">Per Round:</div>
+				<div id="fragmentperrounds-text" class="text">Per Generation:</div>
 				<div id="fragmentperrounds" class="value">0</div>
 				<div class="clearfix"></div>
 				<div id="shops" class="shops"></div>
