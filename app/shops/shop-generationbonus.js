@@ -6,7 +6,7 @@ shopsystem.shops['generationbonus'] = {
 		active: false,
 		generationNeeded: 50,
 		generationBonus: 1,
-		generationNeededUpdateValue: 25,
+		generationNeededUpdateValue: 40,
 		generationBonusUpdateValue: 2,
 	},
 	priority: 3,
@@ -68,15 +68,12 @@ shopsystem.shops['generationbonus'] = {
 	},
 	pricing: [
 		50,
-		100,	//2
-		200,
-		400,	
-		800,	//5
-		1600,
+		200,	//2
+		400,
+		800,	
+		1600,	//5
 		3200,
-		6400,
-		12800,
-		25600	//10
+		6400
 	],
 	getBonusAmount: function(){
 		//check if it is active

@@ -27,6 +27,9 @@ Supports:
 
 
 ## IMPLEMENTED
+20.12.2022
+* Adjusted Generationbonus values and shop cost
+
 19.02.2016:
 * Generationbonus Rework (Scaling with updates from low to higher values)
 * Add Keyboard recognition (space + num)

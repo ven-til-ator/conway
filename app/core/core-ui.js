@@ -45,7 +45,7 @@ function displayScoreboardGUI(){
 			document.getElementById("gridsize").innerHTML = engine.gridColumns+"x"+engine.gridRows;
 		}
 		if(progress.shopsystem.gui.displayFragmentMultiplicatorStatistic && shopsystem.shops['generationbonus'].values.index > 0){
-			document.getElementById("fragmentperroundsboost").innerHTML = shopsystem.shops['generationbonus'].values.generationNeeded;
+			document.getElementById("fragmentperroundsboost").innerHTML = Math.ceil(shopsystem.shops['generationbonus'].values.generationNeeded / shopsystem.shops['generationbonus'].values.generationBonus);
 			document.getElementById("fragmentperrounds").innerHTML = shopsystem.getFragmentsPerGeneration(false);
 		}
 		if(progress.shopsystem.gui.displayFragmentChanceStatistic && shopsystem.shops['fragmentchance'].values.index > 0){
