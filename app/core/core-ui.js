@@ -69,7 +69,12 @@ function displayScoreboardGUI(){
 //keyboard usage
 function checkKey(e) {
     var event = window.event ? window.event : e;
-    //console.log(event.keyCode)
+    
+	//display keycode
+	if(engine.debugMode == true)
+	{
+		console.log(event.keyCode);
+	}
 	
 	//next round
 	if(event.keyCode == 13 || event.keyCode == 78 || event.keyCode == 32){

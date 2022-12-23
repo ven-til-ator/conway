@@ -41,6 +41,7 @@
 			<div id="action-counter">
 				
 			</div>
+			
 			<div id="active-fields-counter">
 				
 			</div>
@@ -55,40 +56,48 @@
 				<div id="max-resets-text" class="text">Games reset:</div>
 				<div id="max-resets" class="value">0</div>
 				<div class="clearfix"></div>
+				
 				<div id="max-rounds-text" class="text">Max Generations:</div>
 				<div id="max-rounds" class="value high">0</div>
 				<div id="min-rounds-text" class="text">Min Generations:</div>
 				<div id="min-rounds" class="value low">0</div>
 				<div class="clearfix"></div>
+				
 				<div id="max-ratio-text" class="text">Max Ratio:</div>
 				<div id="max-ratio" class="value high">0</div>
 				<div id="min-ratio-text" class="text">Min Ratio:</div>
 				<div id="min-ratio" class="value low">0</div>
 				<div class="clearfix"></div>
+				
 				<div id="autospeed-text" class="text">Velocity:</div>
 				<div id="autospeed" class="value">0</div>
 				<div id="gridsize-text" class="text">Grid Size:</div>
 				<div id="gridsize" class="value">0</div>
 				<div class="clearfix"></div>
+				
 				<div id="updates-text" class="text">Updates:</div>
 				<div id="updates" class="value">0</div>
 				<div class="clearfix"></div>
 				<div id="goldenturbos-text" class="text">Golden-Turbos:</div>
 				<div id="goldenturbos" class="value">0</div>
 				<div class="clearfix"></div>
+				
 				<div id="fragments-text" class="text spacer addFragmentHighlight">
 					<div class="subtext">Fragments&nbsp;<i class="fa fa-money" id="money-icon"></i>&nbsp;</div>
 				</div>
 				<div id="fragments" class="value spacer addFragmentHighlight">0</div>
 				<div class="clearfix"></div>
+				
 				<div id="fragmentchance-text" class="text">Chance:</div>
 				<div id="fragmentchance" class="value">0</div>
 				<div class="clearfix"></div>
+				
 				<div id="fragmentperroundsboost-text" class="text">Boost every:</div>
 				<div id="fragmentperroundsboost" class="value">0</div>
 				<div id="fragmentperrounds-text" class="text">Per Generation:</div>
 				<div id="fragmentperrounds" class="value">0</div>
 				<div class="clearfix"></div>
+				
 				<div id="shops" class="shops"></div>
 				<div class="clearfix"></div>
 			</div>
@@ -102,10 +111,20 @@
 			</div>
 
 			<script type ="text/javascript">
+				debugMode();
+				
 				resetGame(true);
 				
+				if(engine.debugMode == true)
+				{
+					generateFields(false);
+				}
+				
 				window.onbeforeunload = function(){
-				  return '';
+					if(engine.debugMode == false)
+					{
+						return '';
+					}
 				};
 			</script>
 

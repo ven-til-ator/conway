@@ -329,11 +329,7 @@ function resetGame(automatic){
 	
 	//scores only with automatic reset (no cheating)
 	if(automatic){
-		//first round => set all statistics
-		if(engine.firstGeneration == true){
-			engine.firstGeneration = false;
-			statistics.game.gamesResetAutomatically++;
-		} else if(statistics.game.currentGenerations > 1){
+		if(statistics.game.currentGenerations > 1){
 			if (statistics.game.lowestRatio == 0 && statistics.game.highestRatio == 0) {
 				statistics.game.lowestRatio = statistics.game.currentRatio;
 				statistics.game.highestRatio = statistics.game.currentRatio;
@@ -362,7 +358,7 @@ function resetGame(automatic){
 		}
 	}
 		
-	var message = "<div class=\"round\">Generation "+ countActionsText +"</div><div class=\"fields\"><div class=\"square\"></div><div class=\"text\">"+ statistics.game.currentActiveFields +"</div></div><div class=\"ratio\">"+ ratioText +"</div>";
+	var message = "<div class=\"row\"><div class=\"round\">Generation "+ countActionsText +"</div><div class=\"fields\"><div class=\"square\"></div><div class=\"text\">"+ statistics.game.currentActiveFields +"</div></div><div class=\"ratio\">"+ ratioText +"</div>";
 	
 	//bonus fragments
 	if(progress.shopsystem.gui.displayFragments && statistics.game.currentRatio == 0){
@@ -381,18 +377,18 @@ function resetGame(automatic){
 		engine.manualReset = true;
 	}
 	
-	message = message + "<div style=\"clear: both;\"></div>";
-	
-	//display history
-	if(statistics.game.gamesResetManually != 0){
-		document.getElementById('history').innerHTML = message + document.getElementById('history').innerHTML;
-	}
+	message = message + "<div style=\"clear: both;\"></div></div>";
 	
 	//game not manually boosted
 	if(engine.manualReset){
 		statistics.game.gamesResetManually++;
 	} else {
 		statistics.game.gamesResetAutomatically++;
+	}
+	
+	//display history
+	if(statistics.game.gamesResetManually != 0){
+		document.getElementById('history').innerHTML = message + document.getElementById('history').innerHTML;
 	}
 
 	//display grid
@@ -413,7 +409,6 @@ function resetGame(automatic){
 
 //reset game statistics
 function resetStatistics(){
-	//engine.firstGeneration = true;
 	statistics.game.lowestRatio = 0;
 	statistics.game.highestRatio = 0;
 	statistics.game.highestGeneration = 0;
@@ -563,4 +558,21 @@ function checkProgress(){
 		document.getElementById("updates-text").style.display = 'block';
 		document.getElementById("updates").style.display = 'block';
 	}
+}
+
+//activate developer debugmode
+function debugMode()
+{
+	engine.debugMode = true;
+	
+	progress.gui.displayReset = true;
+	progress.gui.displayAutoPlay = true;
+	progress.gui.displayStatistics = true;
+	progress.gui.displayGenerationsInfo = true;
+	progress.gui.displayCurrentGameInfo = true;
+	progress.gui.displayHistory = true;
+	
+	progress.engine.autoReset = true;
+	
+	toggleAutoplay();
 }

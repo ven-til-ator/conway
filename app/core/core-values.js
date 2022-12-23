@@ -2,7 +2,7 @@ var statistics = {
 	game: {
 		gamesOverall: 0,
 		gamesResetManually: 0,
-		gamesResetAutomatically: 0,
+		gamesResetAutomatically: -1,
 		currentGenerations: 0,
 		currentActiveFields: 0,
 		highestGeneration: 0,
@@ -16,7 +16,6 @@ var statistics = {
 };
 
 var engine = {
-	firstGeneration: true,
 	gridRows: 12,
 	gridColumns: 12,
 	resetNeeded: false,
@@ -24,7 +23,8 @@ var engine = {
 	gridHistory: new Array(),
 	autoplayActive: false,
 	autoplayTimer: 0,
-	infoMessageTimer: 0
+	infoMessageTimer: 0,
+	debugMode: false
 };
 
 var progress = {
