@@ -59,7 +59,7 @@ function displayScoreboardGUI(){
 		}
 		
 		//display shops if fragments have changed
-		if(shopsystem.fragmentsLastGeneration != shopsystem.values.currentFragments){
+		if(shopsystem.values.fragmentsLastGeneration != shopsystem.values.currentFragments){
 			shopsystem.displayShops();
 			shopsystem.values.fragmentsLastGeneration = shopsystem.values.currentFragments;
 		}

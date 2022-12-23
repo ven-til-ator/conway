@@ -11,8 +11,6 @@ Supports:
 
 ## BUGs
 
-* Shop Buttons not responding on mouseclick
-* Shop Buttons not displayed correctly when needed fragment amount is reached
 * First row not working properly sometimes?
 
 
