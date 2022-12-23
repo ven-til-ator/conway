@@ -24,7 +24,11 @@ var engine = {
 	autoplayActive: false,
 	autoplayTimer: 0,
 	infoMessageTimer: 0,
-	debugMode: false
+	debugMode: false,
+	exploitPrevention: {
+		resetCounter: 0,
+		resetBlocked: false
+	}
 };
 
 var progress = {

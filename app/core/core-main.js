@@ -382,6 +382,19 @@ function resetGame(automatic){
 	//game not manually boosted
 	if(engine.manualReset){
 		statistics.game.gamesResetManually++;
+		
+		//manual reset exploit prevention update
+		if(statistics.game.currentGenerations <= 3)
+		{
+			engine.exploitPrevention.resetCounter++;
+		}
+		
+		//check exploit prevention
+		if(engine.exploitPrevention.resetCounter > 11)
+		{
+			engine.exploitPrevention.resetBlocked = true;
+			document.getElementById('reset').value = "Reset Game";
+		}
 	} else {
 		statistics.game.gamesResetAutomatically++;
 	}

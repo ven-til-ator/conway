@@ -84,7 +84,10 @@ function checkKey(e) {
 	//reset
 	if(event.keyCode == 82){
 		if(progress.gui.displayReset == true){
-			resetGame(false);
+			if(engine.exploitPrevention.resetBlocked == false)
+			{
+				resetGame(false);
+			}
 		}
 	}
 	
