@@ -587,5 +587,7 @@ function debugMode()
 	
 	progress.engine.autoReset = true;
 	
+	progress.shopsystem.gui.displayFragments = true;
+	
 	toggleAutoplay();
 }
