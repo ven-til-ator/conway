@@ -55,7 +55,7 @@ shopsystem.shops['generationbonus'] = {
 					shopsystem.shops['generationbonus'].values.active = true;
 				}
 			
-				displayProgressMessage("Fragment Generation Multiplicator "+ shopsystem.shops['generationbonus'].values.index +" Unlocked!");
+				displayProgressMessage("Generation Bonus "+ shopsystem.shops['generationbonus'].values.index +" Unlocked!");
 				document.getElementById("fragmentperrounds-text").style.display = 'block';
 				document.getElementById("fragmentperrounds").style.display = 'block';
 				

@@ -54,7 +54,7 @@ shopsystem.shops['velocity'] = {
 				toggleAutoplay();
 				toggleAutoplay();
 			
-				displayProgressMessage("Speedboost "+ shopsystem.shops['velocity'].values.index +" Unlocked!");
+				displayProgressMessage("Velocity Upgrade "+ shopsystem.shops['velocity'].values.index +" Unlocked!");
 				document.getElementById("autospeed-text").style.display = 'block';
 				document.getElementById("autospeed").style.display = 'block';
 				

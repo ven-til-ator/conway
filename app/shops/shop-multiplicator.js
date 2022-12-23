@@ -46,7 +46,7 @@ shopsystem.shops['multiplicator'] = {
 				//adjust multiplicator
 				shopsystem.shops['multiplicator'].values.fragmentMultiplicator += shopsystem.shops['multiplicator'].values.fragmentMultiplicatorUpdateValue;
 				
-				displayProgressMessage("Fragment Multiplicator "+ shopsystem.shops['multiplicator'].values.index +" Unlocked!");
+				displayProgressMessage("Fragment Base "+ shopsystem.shops['multiplicator'].values.index +" Unlocked!");
 				
 				statistics.shopsystem.updatesBought++;
 			}
