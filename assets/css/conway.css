@@ -186,6 +186,7 @@ div.clearfix{
 	color: lightgrey;
 	cursor:pointer;
 	font-size:12px;
+	min-width: 90%;
 }
 
 .page-container .highscores .shops .paybutton-active{
@@ -200,6 +201,7 @@ div.clearfix{
 	font-weight:bold;
 	cursor:pointer;
 	font-size:12px;
+	min-width: 90%;
 }
 
 .page-container .highscores .shops .goldenButton{
@@ -214,6 +216,7 @@ div.clearfix{
 	font-weight:bold;
 	cursor:pointer;
 	font-size:12px;
+	min-width: 90%;
 }
 
 .page-container .board{
@@ -303,4 +306,24 @@ div.clearfix{
 	color:black;
 	padding:10px;
 	display: none;
+}
+
+@-webkit-keyframes fragmentIncrease {  
+  0% { background-color: green; }
+}
+
+@-webkit-keyframes fragmentDecrease {  
+  0% { background-color: red; }
+}
+
+.increaseFragments {
+  -webkit-animation-name: fragmentIncrease;
+  -webkit-animation-iteration-count: 1;  
+  -webkit-animation-duration: 1s; 
+}
+
+.decreaseFragments {
+  -webkit-animation-name: fragmentDecrease;
+  -webkit-animation-iteration-count: 1;  
+  -webkit-animation-duration: 1s; 
 }

@@ -187,6 +187,7 @@ function generateFields(automatic){
 					
 					shopsystem.values.currentFragments += shopsystem.getFragmentsPerGeneration(false);
 					displayScoreboardGUI();
+					
 					document.getElementById("money-icon").style.color = fragmentColor;
 				}
 				

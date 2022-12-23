@@ -76,10 +76,10 @@
 				<div id="goldenturbos-text" class="text">Golden-Turbos:</div>
 				<div id="goldenturbos" class="value">0</div>
 				<div class="clearfix"></div>
-				<div id="fragments-text" class="text spacer">
+				<div id="fragments-text" class="text spacer addFragmentHighlight">
 					<div class="subtext">Fragments&nbsp;<i class="fa fa-money" id="money-icon"></i>&nbsp;</div>
 				</div>
-				<div id="fragments" class="value spacer">0</div>
+				<div id="fragments" class="value spacer addFragmentHighlight">0</div>
 				<div class="clearfix"></div>
 				<div id="fragmentchance-text" class="text">Chance:</div>
 				<div id="fragmentchance" class="value">0</div>
@@ -94,15 +94,19 @@
 			</div>
 
 			<div id="progressMessage" class="progressMessage">
-
+				
 			</div>
 
 			<div id="infoMessage" class="infoMessage">
-
+				
 			</div>
 
 			<script type ="text/javascript">
 				resetGame(true);
+				
+				window.onbeforeunload = function(){
+				  return '';
+				};
 			</script>
 
 		</div>
