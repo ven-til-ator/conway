@@ -19,7 +19,12 @@ shopsystem.shops['grid'] = {
 		
 			//display html
 			output += "<div>";
-				output += "<div id=\"payGridButton\" class=\""+ buttonClass +"\" onClick=\"shopsystem.buy('grid');\">(2) Extend Grid "+ (shopsystem.shops['grid'].values.index+1) +" - "+ shopsystem.shops['grid'].pricing[shopsystem.shops['grid'].values.index] +" <i class=\"fa fa-money\"></i>";
+				output += "<div id=\"payGridButton\" class=\"shop-tooltip "+ buttonClass +"\" onClick=\"shopsystem.buy('grid');\">";
+					output += "<div class=\"key\">(2)</div>";
+					output += "<div class=\"title\">Extend Grid "+ (shopsystem.shops['grid'].values.index+1) +"</div>";
+					output += "<div class=\"price\">"+ shopsystem.shops['grid'].pricing[shopsystem.shops['grid'].values.index] +" <i class=\"fa fa-money\"></i></div>";
+					output += "<div class=\"clearfix\"> </div>";
+					output += "<span class=\"shop-tooltiptext shop-tooltip-left\">The bigger the grid, the more cells can be alive (and generate a fragment).</span>"
 				output += "</div>";
 			output += "</div>";
 			output += "<div class=\"clearfix\"> </div>";

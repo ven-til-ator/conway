@@ -24,7 +24,12 @@ shopsystem.shops['generationbonus'] = {
 		
 			//display html
 			output += "<div>";
-				output += "<div id=\"payFragmentRoundMultiplicatorButton\" class=\""+ buttonClass +"\" onClick=\"shopsystem.buy('generationbonus');\">(3) Generations Boost "+ (shopsystem.shops['generationbonus'].values.index+1) +" - "+ shopsystem.shops['generationbonus'].pricing[shopsystem.shops['generationbonus'].values.index] +" <i class=\"fa fa-money\"></i>";
+				output += "<div id=\"payFragmentRoundMultiplicatorButton\" class=\"shop-tooltip "+ buttonClass +"\" onClick=\"shopsystem.buy('generationbonus');\">";
+					output += "<div class=\"key\">(3)</div>";
+					output += "<div class=\"title\">Generation Bonus "+ (shopsystem.shops['generationbonus'].values.index+1) +"</div>";
+					output += "<div class=\"price\">"+ shopsystem.shops['generationbonus'].pricing[shopsystem.shops['generationbonus'].values.index] +" <i class=\"fa fa-money\"></i></div>";
+					output += "<div class=\"clearfix\"> </div>";
+					output += "<span class=\"shop-tooltiptext shop-tooltip-left\">After a given amount of generations a bonus is added to the fragments earned per cell.</span>"
 				output += "</div>";
 			output += "</div>";
 			output += "<div class=\"clearfix\"> </div>";

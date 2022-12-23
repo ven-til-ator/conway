@@ -24,14 +24,15 @@ Supports:
 * Click Counter => Fragments every X clicks
 * Buyable Fragment counter statistic (Displayed in History for each round)
 * Save progress in html5 local cache
-* Tooltips for each element (Shops / Statistics)
+* Tooltips for each element (Statistics)
 * Overall rounds counter statistic (for all games)
-* Exploit prevention (resetting alot)
 
 
 ## IMPLEMENTED
-xx.12.2022
+23.12.2022
 * Block F5 or Backspace
+* Exploit prevention (resetting alot)
+* Tooltips for each element (Shops)
 
 20.12.2022
 * Adjusted Generationbonus values and shop cost

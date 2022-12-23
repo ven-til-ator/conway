@@ -21,7 +21,12 @@ shopsystem.shops['fragmentchance'] = {
 		
 			//display html
 			output += "<div>";
-				output += "<div id=\"payFragmentChanceButton\" class=\""+ buttonClass +"\" onClick=\"shopsystem.buy('fragmentchance');\">(4) Fragment Chance "+ (shopsystem.shops['fragmentchance'].values.index+1) +" - "+ shopsystem.shops['fragmentchance'].pricing[shopsystem.shops['fragmentchance'].values.index] +" <i class=\"fa fa-money\"></i>";
+				output += "<div id=\"payFragmentChanceButton\" class=\"shop-tooltip "+ buttonClass +"\" onClick=\"shopsystem.buy('fragmentchance');\">";
+					output += "<div class=\"key\">(4)</div>";
+					output += "<div class=\"title\">Fragment Chance "+ (shopsystem.shops['fragmentchance'].values.index+1) +"</div>";
+					output += "<div class=\"price\">"+ shopsystem.shops['fragmentchance'].pricing[shopsystem.shops['fragmentchance'].values.index] +" <i class=\"fa fa-money\"></i></div>";
+					output += "<div class=\"clearfix\"> </div>";
+					output += "<span class=\"shop-tooltiptext shop-tooltip-left\">The higher the chance, the more fragments can be earned per generation.</span>"
 				output += "</div>";
 			output += "</div>";
 			output += "<div class=\"clearfix\"> </div>";

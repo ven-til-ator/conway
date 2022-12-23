@@ -21,7 +21,12 @@ shopsystem.shops['velocity'] = {
 		
 			//display html
 			output += "<div>";
-				output += "<div id=\"paySpeedButton\" class=\""+ buttonClass +"\" onClick=\"shopsystem.buy('velocity');\">(1) Velocity Boost "+ (shopsystem.shops['velocity'].values.index+1) +" - "+ shopsystem.shops['velocity'].pricing[shopsystem.shops['velocity'].values.index] +" <i class=\"fa fa-money\"></i>";
+				output += "<div id=\"paySpeedButton\" class=\"shop-tooltip "+ buttonClass +"\" onClick=\"shopsystem.buy('velocity');\">";
+					output += "<div class=\"key\">(1)</div>";
+					output += "<div class=\"title\">Velocity Upgrade "+ (shopsystem.shops['velocity'].values.index+1) +"</div>";
+					output += "<div class=\"price\">"+ shopsystem.shops['velocity'].pricing[shopsystem.shops['velocity'].values.index] +" <i class=\"fa fa-money\"></i></div>";
+					output += "<div class=\"clearfix\"> </div>";
+					output += "<span class=\"shop-tooltiptext shop-tooltip-left\">The more velocity is given, the faster generations are run through.</span>"
 				output += "</div>";
 			output += "</div>";
 			output += "<div class=\"clearfix\"> </div>";

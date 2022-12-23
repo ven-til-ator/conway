@@ -21,7 +21,12 @@ shopsystem.shops['multiplicator'] = {
 		
 			//display html
 			output += "<div>";
-				output += "<div id=\"payFragmentMultiplicatorButton\" class=\""+ buttonClass +"\" onClick=\"shopsystem.buy('multiplicator');\">(5) Fragment Multiplicator "+ (shopsystem.shops['multiplicator'].values.index+1) +" - "+ shopsystem.shops['multiplicator'].pricing[shopsystem.shops['multiplicator'].values.index] +" <i class=\"fa fa-money\"></i>";
+				output += "<div id=\"payFragmentMultiplicatorButton\" class=\"shop-tooltip "+ buttonClass +"\" onClick=\"shopsystem.buy('multiplicator');\">";
+					output += "<div class=\"key\">(5)</div>";
+					output += "<div class=\"title\">Fragment Base "+ (shopsystem.shops['multiplicator'].values.index+1) +"</div>";
+					output += "<div class=\"price\">"+ shopsystem.shops['multiplicator'].pricing[shopsystem.shops['multiplicator'].values.index] +" <i class=\"fa fa-money\"></i></div>";
+					output += "<div class=\"clearfix\"> </div>";
+					output += "<span class=\"shop-tooltiptext shop-tooltip-left\">The higher the value, the more fragments are earned per generation.</span>"
 				output += "</div>";
 			output += "</div>";
 			output += "<div class=\"clearfix\"> </div>";
